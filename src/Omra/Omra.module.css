@@ -1,0 +1,17 @@
+  .imgContainer {
+    width: 100%; /* Ajustez la largeur selon vos besoins */
+    height: auto; /* Ajustez la hauteur selon vos besoins */
+    overflow: hidden; /* Masque le contenu dépassant de la div */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px 20px;
+  }
+  
+  .imgContainer img {
+    width: 90%; /* L'image prendra 100% de la largeur de la div parente */
+    height: auto; /* La hauteur s'ajuste automatiquement pour maintenir les proportions */
+    display: block; /* Supprime l'espace en bas de l'image à cause de l'affichage en ligne par défaut */
+  }
+  
