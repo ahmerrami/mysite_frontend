@@ -1,14 +1,18 @@
+  .title {
+    margin-left: 20px;
+  }
   .carouselContainer {
-    height: 300px;
-    width: 100%;
+    width: 37%;
+    height: 200px;
     overflow: hidden;
+    margin: 50px;
   }
   
   .slides {
     display: flex;
     /* Utilisation de "white-space: nowrap;" pour éviter le retour à la ligne des slides */
     white-space: nowrap;
-    animation: scroll 10s linear infinite; /* Applique l'animation au conteneur de carousel */
+    animation: scroll 5s linear infinite; /* Applique l'animation au conteneur de carousel */
   }
   
   .slide {

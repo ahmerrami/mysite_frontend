@@ -23,6 +23,10 @@ header {
 
   main {
     margin-top: 60px; /* Adjust the margin based on the height of your fixed header */
+    display: flex;
+    flex-direction:row;
+    align-items: center; /* Alignement horizontal au centre */
+    justify-content: center; /* Alignement vertical au centre */
   }
 
   footer {

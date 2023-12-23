@@ -25,11 +25,13 @@ const ContactList = ({ contacts }) => {
 
 function Contact() {
   const contactList = [
-    { id: 1, name: 'Youssef AFEKHAR', imageUrl:'./unknown.png', position: 'Responsable RH et Formation', email: 'y.afekhar@supratourstravel.com', telephone:'0660-342385' },
-    { id: 2, name: 'Ahmed ERRAMI', imageUrl:'./unknown.png', position: 'Responsable Financier', email: 'a.errami@supratourstravel.com', telephone:'0660-147499' },
-    { id: 3, name: 'Mohammed LAHMOUZ', imageUrl:'./unknown.png', position: 'Responsable Services', email: 'm.lahmouz@supratourstravel.com', telephone:'0660-133501' },
-    { id: 4, name: 'Noureddine MARJANI', imageUrl:'./unknown.png', position: 'Responsable Facility Management', email: 'n.marjani@supratourstravel.com', telephone:'0660-348453' },
-    { id: 5, name: 'Adam BOUDARA', imageUrl:'./unknown.png', position: 'Responsable Tourisme', email: 'a.boudara@supratourstravel.com', telephone:'0702-066281' },
+    { id: 1, name: 'Adam BOUDARA', imageUrl:'./unknown.png', position: 'Responsable Tourisme', email: 'a.boudara@supratourstravel.com', telephone:'0702-066281' },
+    { id: 2, name: 'Tarik EL AOUFIR', imageUrl:'./unknown.png', position: 'Responsable Hajj & Omra', email: 't.elaoufir@supratourstravel.com', telephone:'0661-573767' },
+    { id: 3, name: 'Agence de Rabat', imageUrl:'./logo.png', position: 'Local A5, Gare Rabat Agdal, sis Rue Abderrahmane El Ghafiki', email: 'contact@supratourstravel.com', telephone:'0537-776509' },
+    { id: 4, name: 'Agence de Tanger', imageUrl:'./logo.png', position: 'Local T13*, Gare ferroviaire de Tanger Ville, sis Boulevard d’Espagne MALABATA', email: 'contact@supratourstravel.com', telephone:'0539-336550' },
+    { id: 5, name: 'Abdelmajid KASMI', imageUrl:'./unknown.png', position: 'Responsable Parkings', email: 'a.kasmi@supratourstravel.com', telephone:'0702-028777' },
+    { id: 6, name: 'Youssef AFEKHAR', imageUrl:'./unknown.png', position: 'Responsable RH et Formation', email: 'y.afekhar@supratourstravel.com', telephone:'0660-342385' },
+    { id: 7, name: 'Ahmed ERRAMI', imageUrl:'./unknown.png', position: 'Responsable Financier', email: 'a.errami@supratourstravel.com', telephone:'0660-147499' },    
     // Add more contacts as needed
   ];
 
