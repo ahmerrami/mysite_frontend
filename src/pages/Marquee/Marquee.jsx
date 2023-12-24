@@ -1,4 +1,5 @@
 import React from 'react';
+import Main from '../Main/Main';
 import styles from './Marquee.module.css';
 //import './Marquee.css'; // Import the CSS file for styling
 
@@ -6,7 +7,8 @@ const Marquee = () => {
   return (
     <div className={styles.marqueeContainer}>
       <div className={styles.marqueeContent}>
-        This text is scrolling from right to left in React!
+      .ندعوكم للمشاركة في رحلة مباركة لأداء مناسك العمرة في بيت الله الحرام 
+      .للاطلاع على تفاصيل الرحلة المرجو زيارة الرابط اعلاه
       </div>
     </div>
   );

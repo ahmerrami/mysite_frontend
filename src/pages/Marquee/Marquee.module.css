@@ -1,20 +1,23 @@
 .marqueeContainer {
+    width: 1250px;
+    margin: 10px 0px;
     overflow: hidden;
     white-space: nowrap;
-    margin-top: 40px;
+    padding: 10px;
+    background-color: rgba(30, 122, 107, 0.404);
   }
   
   .marqueeContent {
-    display: inline-block;
-    animation: marqueeAnimation 10s linear infinite;
+    display:inline-block;
+    animation: marqueeAnimation 20s linear infinite;
   }
   
   @keyframes marqueeAnimation {
     from {
-      transform: translateX(100%);
+      transform: translateX(-100%);
     }
     to {
-      transform: translateX(-100%);
+      transform: translateX(100%);
     }
   }
   
