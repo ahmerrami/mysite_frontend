@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./Slider.css";
+import styles from "./Slider.module.css";
 
 const ImageSlider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,8 +14,8 @@ const ImageSlider = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className="imageSlider">
-      <img className="imageSlide" src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} />
+    <div className={styles.imageSlider}>
+      <img className={styles.imageSlide} src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} />
     </div>
   );
 };

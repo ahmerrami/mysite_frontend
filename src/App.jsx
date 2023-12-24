@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import About from './About/About.jsx';
-import Reference from './Reference/Reference.jsx';
-import Contact from './Contact/Contact.jsx';
-import Omra from './Omra/Omra.jsx';
-import Slider from './Slider/Slider.jsx';
+import About from './pages/About/About.jsx';
+import Reference from './pages/Reference/Reference.jsx';
+import Contact from './pages/Contact/Contact.jsx';
+import Omra from './pages/Omra/Omra.jsx';
+import Slider from './pages/Slider/Slider.jsx';
+import Marquee from './pages/Marquee/Marquee.jsx';
+import Header from './pages/Header/Header.jsx';
 
 import './App.css';
 
@@ -28,6 +30,7 @@ function App() {
         <button onClick={() => handleMenuClick('omra')}>Omra</button>
         <button onClick={() => handleMenuClick('contact')}>Contact</button>
       </header>
+      <Header setActiveContent={setActiveContent}/>
 
       {/* Display content based on activeContent state */}
       <main>
@@ -36,11 +39,14 @@ function App() {
         {activeContent === 'reference' && <Reference/>}
         {activeContent === 'omra' && <Omra/>}
         {activeContent === 'contact' && <Contact/>}
+        
       </main>
       <footer>
           <p>&copy; supratourstravel.com {new Date().getFullYear()}</p>
       </footer>
+      <Header setActiveContent={setActiveContent}/>
     </div>
+    
   );
 }
 
