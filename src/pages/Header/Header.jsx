@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 
 function Header({setActiveContent}){
-    const imageUrl = './logo.png';
+    const imageUrl = './Logo ST PNG.png';
     // Function to handle menu item clicks
     const handleMenuClick = (content) => {
         setActiveContent(content);

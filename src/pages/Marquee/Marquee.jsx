@@ -1,5 +1,4 @@
 import React from 'react';
-import Main from '../Main/Main';
 import styles from './Marquee.module.css';
 //import './Marquee.css'; // Import the CSS file for styling
 

@@ -4,7 +4,8 @@
     overflow: hidden;
     white-space: nowrap;
     padding: 10px;
-    background-color: rgba(30, 122, 107, 0.404);
+    background-color: hsl(34,34%,53%);
+    color: white;
   }
   
   .marqueeContent {

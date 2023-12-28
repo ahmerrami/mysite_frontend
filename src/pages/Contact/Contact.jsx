@@ -30,8 +30,8 @@ function Contact() {
     { id: 3, name: 'Agence de Rabat', imageUrl:'./logo.png', position: 'Local A5, Gare Rabat Agdal, sis Rue Abderrahmane El Ghafiki', email: 'contact@supratourstravel.com', telephone:'0537-776509' },
     { id: 4, name: 'Agence de Tanger', imageUrl:'./logo.png', position: 'Local T13*, Gare ferroviaire de Tanger Ville, sis Boulevard d’Espagne MALABATA', email: 'contact@supratourstravel.com', telephone:'0539-336550' },
     { id: 5, name: 'Abdelmajid KASMI', imageUrl:'./unknown.png', position: 'Responsable Parkings', email: 'a.kasmi@supratourstravel.com', telephone:'0702-028777' },
-    { id: 6, name: 'Youssef AFEKHAR', imageUrl:'./unknown.png', position: 'Responsable RH et Formation', email: 'y.afekhar@supratourstravel.com', telephone:'0660-342385' },
-    { id: 7, name: 'Ahmed ERRAMI', imageUrl:'./unknown.png', position: 'Responsable Financier', email: 'a.errami@supratourstravel.com', telephone:'0660-147499' },    
+    { id: 6, name: 'Youssef AFEKHAR', imageUrl:'./unknown.png', position: 'Responsable Commercial Font-Office', email: 'y.afekhar@supratourstravel.com', telephone:'0660-342385' },
+    //{ id: 7, name: 'Ahmed ERRAMI', imageUrl:'./unknown.png', position: 'Responsable Financier', email: 'a.errami@supratourstravel.com', telephone:'0660-147499' },    
     // Add more contacts as needed
   ];
 
