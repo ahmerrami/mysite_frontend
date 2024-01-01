@@ -1,39 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import styles from "./Slider.module.css";
+import Carousel from 'react-bootstrap/Carousel';
 
-const ImageSlider = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Increment the index, and reset to 0 if it exceeds the length of the images array
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change the interval as needed (here it's set to 3000 milliseconds or 3 seconds)
-
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
-  }, [images.length]);
-
+function Images({images}) {
   return (
-    <div className={styles.imageSlider}>
-      <img className={styles.imageSlide} src={images[currentIndex]} alt={`Slide ${currentIndex + 1}`} />
-    </div>
-  );
-};
-
-function Slider() {
-  const images = [
-    'Billetterie.jpg',
-    'vte1.jpg',
-    'esc1.jpg',
-    'crc1.jpg',
-    // Add more image URLs as needed
-  ];
-
-  return (
-    <div className="App">
-      <ImageSlider images={images} />
-    </div>
+    <Carousel>
+        {images.map((image) => (
+            <Carousel.Item interval={1000}>
+                <img
+                className="d-block w-100"
+                src={image.imageUrl}
+                alt="mySlide"
+                />
+            </Carousel.Item>
+        ))}
+    </Carousel>
   );
 }
 
-export default Slider
+function Slider(){
+    const imagesList = [
+        {id:1,imageUrl:'./Billetterie.jpg'},
+        {id:2,imageUrl:'./vte1.jpg'},
+        {id:3,imageUrl:'./esc1.jpg'},
+        {id:4,imageUrl:'./crc1.jpg'},
+        // Add more image URLs as needed
+      ];
+      return(
+        <Images images={imagesList}/>
+      );
+}
+
+export default Slider;
