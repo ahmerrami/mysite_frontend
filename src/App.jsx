@@ -5,6 +5,7 @@ import About from './pages/About/About.jsx';
 import Reference from './pages/Reference/Reference.jsx';
 
 import Omra from './pages//Omra/Omra.jsx';
+import AO from './pages/AO/AO.jsx';
 import Slider from './pages/Slider/Slider.jsx';
 import ContactsList from './pages/ContactList/ContactsList.jsx';
 import './App.css';
@@ -29,6 +30,7 @@ const App = () => {
               <Nav.Link as={Link} to="/about">About</Nav.Link>
               <Nav.Link as={Link} to="/reference">Références</Nav.Link>
               <Nav.Link as={Link} to="/omra">Omra</Nav.Link>
+              <Nav.Link as={Link} to="/ao">Appels d'offres</Nav.Link>
               <Nav.Link as={Link} to="/contact">Contacts</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -38,6 +40,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
+          <Route path="/ao" element={<AO />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
       </Router>
