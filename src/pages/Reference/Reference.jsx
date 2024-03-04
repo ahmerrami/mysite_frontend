@@ -5,7 +5,7 @@ import styles from './Reference.module.css';
 const ReferenceList = ({ references }) => {
     return (
         <>
-            <h4 className={styles.title}>Références</h4>
+            <h2 className={styles.title}>Références</h2>
             <div className={styles.carouselContainer}>
                 <div className={styles.slides}>
                 {references.map((reference) => (

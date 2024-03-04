@@ -27,12 +27,12 @@ const App = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             {/* <Nav className="ml-auto"> */}
             <Nav className="mr-auto justify-content-between w-100">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
-              <Nav.Link as={Link} to="/about">About</Nav.Link>
-              <Nav.Link as={Link} to="/reference">Références</Nav.Link>
-              <Nav.Link as={Link} to="/omra">Omra</Nav.Link>
-              <Nav.Link as={Link} to="/ao">Appels d'offres</Nav.Link>
-              <Nav.Link as={Link} to="/contact">Contacts</Nav.Link>
+              <Nav.Link as={Link} to="/"><b>Home</b></Nav.Link>
+              <Nav.Link as={Link} to="/about"><b>About</b></Nav.Link>
+              <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
+              <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
+              <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link>
+              <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
