@@ -19,7 +19,7 @@ const contactsData = [
   { id: 3, 
     name: 'Youssef AFEKHAR', 
     imageUrl:'./unknown.png', 
-    position: 'Responsable Commercial Font-Office', 
+    position: 'Responsable RH et Formation / BU Commercial Font-Office', 
     email: 'y.afekhar@supratourstravel.com', 
     phone:'0660-342385' },
   { id: 4, 

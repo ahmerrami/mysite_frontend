@@ -31,7 +31,7 @@ const App = () => {
               <Nav.Link as={Link} to="/about"><b>About</b></Nav.Link>
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
               <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
-              <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link>
+              {/* <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link> */}
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -41,7 +41,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
-          <Route path="/ao" element={<AO />} />
+          {/* <Route path="/ao" element={<AO />} /> */}
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
       </Router>
