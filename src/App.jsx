@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import About from './pages/About/About.jsx';
 import Reference from './pages/Reference/Reference.jsx';
 
@@ -8,6 +9,7 @@ import Omra from './pages//Omra/Omra.jsx';
 import AO from './pages/AO/AO.jsx';
 import Slider from './pages/Slider/Slider.jsx';
 import ContactsList from './pages/ContactList/ContactsList.jsx';
+import StageForm from './pages/Stage/StageForm.jsx';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -32,6 +34,7 @@ const App = () => {
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
               <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
               {/* <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link> */}
+              <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link>
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -42,6 +45,7 @@ const App = () => {
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
           {/* <Route path="/ao" element={<AO />} /> */}
+          <Route path="/stage" element={<StageForm />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
       </Router>
