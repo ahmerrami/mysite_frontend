@@ -14,6 +14,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyForm from './pages/Stage/MyForm.jsx';
 import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
+import Conditions from './pages/Stage/Conditions.jsx';
 
 const App = () => {
   const imageUrl = './logo.png';
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/omra" element={<Omra />} />
           {/* <Route path="/ao" element={<AO />} /> */}
           <Route path="/stage" element={<MultiStepForm />} />
+          <Route path="/conditions" element={<Conditions />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
       </Router>

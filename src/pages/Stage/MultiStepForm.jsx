@@ -42,35 +42,6 @@ function MultiStepForm() {
         .catch(error => console.error('Error fetching periodes:', error));
   }, []);
 
-/*   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  }; */
-/*   const handleChange = (event) => {
-    const { name, value, type } = event.target;
-
-    if (type === 'file') {
-      setFormData({ ...formData, [name]: event.target.files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  }; */
-
-  /* const handleChange = (event) => {
-    const { name, type } = event.target;
-
-    if (type === 'file') {
-      const file = event.target.files[0];
-      setFormData({ ...formData, [name]: file });
-    } else {
-      const value = event.target.value;
-      setFormData({ ...formData, [name]: value });
-    }
-  }; */
-
   const handleChange = (event) => {
     const { name, type, value, checked } = event.target;
   
