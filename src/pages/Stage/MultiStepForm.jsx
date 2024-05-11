@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -27,6 +27,8 @@ function MultiStepForm() {
   const [step, setStep] = useState(1);
   const [villes, setVilles] = useState([]);
   const [periodes, setPeriodes] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     fetch('https://errami.pythonanywhere.com/api/stages/villes/')
@@ -65,10 +67,53 @@ function MultiStepForm() {
     setStep(step - 1);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic here
-    console.log(formData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+
+    try {
+      const response = await fetch('https://errami.pythonanywhere.com/api/stages/form-stage/create/', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      // Reset form and errors
+      setFormData({
+        civilite : '',
+        nom : '',
+        prenom : '',
+        cin : '',
+        dateN : '',
+        tel : '',
+        email : '',
+        adress : '',
+        ville : 0,
+        niveau : '',
+        ecole : '',
+        specialite : '',
+        villeEcole : 0,
+        selectedPeriode : 0,
+        cv: null,
+        lettre: null,
+        isChecked: false,
+      });
+      setErrors({});
+      setSuccessMessage("Votre demande a été traitée avec succès. Nous vous tiendrons informés de l'avancement de votre dossier et vous contacterons prochainement.");
+
+      console.log('Form submitted successfully');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle specific errors, if needed
+      setErrors({ submit: 'Failed to submit form' });
+    }
   };
 
   return (
@@ -104,6 +149,10 @@ function MultiStepForm() {
           )}
         </Col>
       </Row>
+      {/* Success message */}
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
+      {/* Error message */}
+      {errors.submit && <Alert variant="danger">{errors.submit}</Alert>}
     </Container>
   );
 }
