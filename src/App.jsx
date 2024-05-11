@@ -9,10 +9,10 @@ import Omra from './pages//Omra/Omra.jsx';
 import AO from './pages/AO/AO.jsx';
 import Slider from './pages/Slider/Slider.jsx';
 import ContactsList from './pages/ContactList/ContactsList.jsx';
-import StageForm from './pages/Stage/StageForm.jsx';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyForm from './pages/Stage/MyForm.jsx';
+
 import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
 import Conditions from './pages/Stage/Conditions.jsx';
 
