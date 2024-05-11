@@ -12,6 +12,8 @@ import ContactsList from './pages/ContactList/ContactsList.jsx';
 import StageForm from './pages/Stage/StageForm.jsx';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MyForm from './pages/Stage/MyForm.jsx';
+import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
 
 const App = () => {
   const imageUrl = './logo.png';
@@ -45,7 +47,7 @@ const App = () => {
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
           {/* <Route path="/ao" element={<AO />} /> */}
-          <Route path="/stage" element={<StageForm />} />
+          <Route path="/stage" element={<MultiStepForm />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
       </Router>
