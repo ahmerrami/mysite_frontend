@@ -26,7 +26,7 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         </Form.Control>
       </Form.Group>
       <Form.Group controlId="cv">
-        <Form.Label>CV</Form.Label>
+        <Form.Label>CV - format pdf</Form.Label>
         <Form.Control 
           type="file"
           name="cv"
@@ -36,7 +36,7 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         />
       </Form.Group>
       <Form.Group controlId="lettre">
-        <Form.Label>Lettre de motivation</Form.Label>
+        <Form.Label>Lettre de motivation - format pdf</Form.Label>
         <Form.Control 
           type="file"
           name="lettre"
