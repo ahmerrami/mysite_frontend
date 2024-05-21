@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-function Step3({ formData, handleChange, handlePrevious, handleSubmit, periodes }) {
+function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, periodes }) {
   const { selectedPeriode, cv, lettre, isChecked } = formData;
 
   const validateStep = () => {
@@ -63,7 +63,7 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, periodes 
       
       <hr/>
       <Button variant="secondary" onClick={handlePrevious}>Previous</Button>{' '}
-      <Button variant="primary" onClick={handleSubmit} disabled={!validateStep()}>Submit</Button>
+      <Button variant="primary" onClick={handleSubmit} disabled={!validateStep() || loading}>Submit</Button>
     </>
   );
 }
