@@ -9,7 +9,7 @@ function Conditions(){
                 <b>ARTICLE 1 - OBJET</b><br/><br/>
                 
 
-                Les présentes conditions générales d'utilisation(CGU) ont pour objet de définir les modalités et conditions d'accès et d'utilisation du formulaire de stage disponible sur le site web https://Supratourstravel.com <br/><br/>
+                Les présentes conditions générales d'utilisation(CGU) ont pour objet de définir les modalités et conditions d'accès et d'utilisation du formulaire de stage disponible sur le site web https://supratourstravel.com <br/><br/>
 
                 <b> ARTICLE 2 - ACCEPTATION DES CGU</b><br/><br/>
 
