@@ -4,7 +4,7 @@ function Omra(){
 
     return(
         <div className={styles.imgContainer}>
-            <img src="./Omra Septembre.jpg" alt="Omra"/>
+            <img src="./Omra_Rajab_1446.jpg" alt="Omra"/>
         </div>
     );
 }

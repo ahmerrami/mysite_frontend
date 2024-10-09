@@ -37,7 +37,7 @@ const App = () => {
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
               <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
               {/* <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link> */}
-              <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link>
+              {/* <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link> */}
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
