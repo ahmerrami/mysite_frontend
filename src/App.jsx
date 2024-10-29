@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,7 +36,7 @@ const App = () => {
               <Nav.Link as={Link} to="/about"><b>About</b></Nav.Link>
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
               <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
-              {/* <Nav.Link as={Link} to="/ao"><b>Appels d'offres</b></Nav.Link> */}
+              <Nav.Link as={Link} to="/ao"><b>Appels d offres</b></Nav.Link>
               {/* <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link> */}
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
-          {/* <Route path="/ao" element={<AO />} /> */}
+          <Route path="/ao" element={<AO />} />
           <Route path="/stage" element={<MultiStepForm />} />
           <Route path="/conditions" element={<Conditions />} />
           <Route path="/contact" element={<ContactsList />} />
