@@ -43,7 +43,7 @@ function MultiStepForm() {
     try {
       const response = await fetch(`${API_URL}/${endpoint}/`);
       if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
-      const data = await response.json();
+      const data = await response.jsxon();
       setData(data);
     } catch (error) {
       console.error(`Error fetching ${endpoint}:`, error);

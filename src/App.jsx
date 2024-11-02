@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import About from './pages/About/About.jsx';
 import Reference from './pages/Reference/Reference.jsx';
 
-import Omra from './pages//Omra/Omra.jsx';
+import Omra from './pages/Omra/Omra.jsx';
 import AO from './pages/AO/AO.jsx';
 import Slider from './pages/Slider/Slider.jsx';
 import ContactsList from './pages/ContactList/ContactsList.jsx';
