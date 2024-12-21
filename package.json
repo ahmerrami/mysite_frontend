@@ -1,5 +1,5 @@
 {
-  "homepage": "https://supratourstravel.com",
+  "homepage": "https://www.supratourstravel.com",
   "name": "my-react-app01",
   "private": true,
   "version": "0.0.0",
@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "predeploy": "vite build", 
+    "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
