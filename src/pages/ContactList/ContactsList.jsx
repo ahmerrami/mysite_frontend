@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
-import PhoneIcon from '../Icon/PhoneIcon';
-import MailIcon from '../Icon/MailIcon';
+import { Row, Col } from 'react-bootstrap';
+import Contact from './Contact';
 
 const contactsData = [
   { id: 1, 
@@ -48,17 +47,13 @@ const ContactsList = () => {
     <Row>
       {contactsData.map((contact) => (
         <Col key={contact.id} md={4}>
-          <Card style={{ marginBottom: '20px', textAlign: 'center', borderRadius: '10px', boxShadow: '5px 5px 5px hsla(0, 0%, 0%, 0.112)',}}>
-          <Card.Img className="mx-auto d-block" variant="top" src={contact.imageUrl} style={{maxWidth: '30%', borderRadius: '50%'}} />
-            <Card.Body>
-              <Card.Title>{contact.name}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {contact.position}
-              </Card.Subtitle>
-              <Card.Text><MailIcon/>{contact.email}</Card.Text>
-              <Card.Text><PhoneIcon/>{contact.phone}</Card.Text>
-            </Card.Body>
-          </Card>
+          <Contact 
+            imageUrl={contact.imageUrl}
+            name={contact.name}
+            position={contact.position}
+            email={contact.email}
+            phone={contact.phone}
+          />
         </Col>
       ))}
     </Row>
