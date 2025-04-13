@@ -45,11 +45,16 @@ function Omra() {
             onMouseLeave={handleMouseLeave}
         >
             {images.length > 0 ? (
-                <img
-                    src={images[currentImageIndex].image}
-                    alt={images[currentImageIndex].objet || 'Omra'}
-                    className={styles.image}
-                />
+                <>
+                    <img
+                        src={images[currentImageIndex].image}
+                        alt={images[currentImageIndex].objet || 'Omra'}
+                        className={styles.image}
+                    />
+                    <p className={styles.description}>
+                        {images[currentImageIndex].description || 'Description non disponible'}
+                    </p>
+                </>
             ) : (
                 <p>Chargement des images...</p>
             )}
