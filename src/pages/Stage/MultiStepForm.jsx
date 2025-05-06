@@ -4,7 +4,7 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 
-const API_URL = 'https://errami.pythonanywhere.com/api/stages';
+const API_URL = 'https://idara.supratourstravel.com/api/stages';
 const INITIAL_FORM_DATA = {
   civilite: '',
   nom: '',

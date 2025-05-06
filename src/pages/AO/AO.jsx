@@ -14,7 +14,7 @@ const AO = () => {
     // Remplacez l'URL par l'endpoint réel de votre API Django REST
     const fetchAOs = async () => {
       try {
-        const response = await axios.get('https://errami.pythonanywhere.com/api/aos/aos/');
+        const response = await axios.get('https://idara.supratourstravel.com/api/aos/aos/');
         setAOs(response.data);
         setLoading(false);
       } catch (err) {

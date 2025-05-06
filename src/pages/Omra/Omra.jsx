@@ -11,7 +11,7 @@ function Omra() {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await axios.get('https://errami.pythonanywhere.com/api/omra/images/');
+                const response = await axios.get('https://idara.supratourstravel.com/api/omra/images/');
                 setImages(response.data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des images :', error);
