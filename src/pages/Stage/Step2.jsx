@@ -46,7 +46,7 @@ function Step2({ formData, handleChange, handlePrevious, handleNext, villes }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Ville Ecolde</Form.Label>
+        <Form.Label>Ville Ecole</Form.Label>
         <Form.Control as="select" custom id="villeEcole" name="villeEcole" value={villeEcole} onChange={handleChange} required>
         <option value="">--Ville Ecole--</option>
           {villes.map(ville => (
