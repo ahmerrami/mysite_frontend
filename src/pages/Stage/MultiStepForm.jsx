@@ -4,8 +4,8 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 
-//const API_URL = 'https://idara.supratourstravel.com/api/stages';
-const API_URL = 'http://127.0.0.1:8000/api/stages/';
+const API_URL = 'https://idara.supratourstravel.com/api/stages';
+//const API_URL = 'http://127.0.0.1:8000/api/stages/';
 const INITIAL_FORM_DATA = {
   civilite: '',
   nom: '',
