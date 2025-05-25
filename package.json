@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist --repo=git@github.com-supratours:SupratoursTravel/mysite_frontend.git"
+    "deploy": "gh-pages -d dist --repo=git@github-supracli:SupratoursTravel/mysite_frontend.git"
   },
   "dependencies": {
     "@mdi/js": "^7.3.67",
