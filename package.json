@@ -1,6 +1,6 @@
 {
   "homepage": "https://www.supratourstravel.com",
-  "name": "my-react-app01",
+  "name": "mysite_frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r git@github.com-supratours:SupratoursTravel/mysite_frontend.git"
   },
   "dependencies": {
     "@mdi/js": "^7.3.67",
