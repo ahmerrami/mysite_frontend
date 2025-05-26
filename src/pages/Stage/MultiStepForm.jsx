@@ -5,7 +5,6 @@ import Step2 from './Step2';
 import Step3 from './Step3';
 
 const API_URL = 'https://idara.supratourstravel.com/api/stages';
-//const API_URL = 'http://127.0.0.1:8000/api/stages/';
 const INITIAL_FORM_DATA = {
   civilite: '',
   nom: '',
@@ -44,7 +43,7 @@ function MultiStepForm() {
     try {
       const response = await fetch(`${API_URL}/${endpoint}/`);
       if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
-      const data = await response.jsxon();
+      const data = await response.json();
       setData(data);
     } catch (error) {
       console.error(`Error fetching ${endpoint}:`, error);
