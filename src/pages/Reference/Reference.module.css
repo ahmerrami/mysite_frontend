@@ -1,41 +1,58 @@
-  .title {
-    margin: 20px;
+.title {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+.carouselContainer {
+  width: 100%;
+  max-width: 1400px;
+  height: 280px;
+  overflow: hidden;
+  margin: 50px auto;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: calc(260px * 24); /* 12 références * 2 (dupliquées) * largeur augmentée */
+  animation: scroll 40s linear infinite; /* Durée ajustée pour un défilement fluide */
+}
+
+.slide {
+  flex: 0 0 240px; /* Largeur augmentée pour chaque slide */
+  height: 200px; /* Hauteur augmentée */
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px 10px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.slide:hover {
+  transform: scale(1.05);
+}
+
+.slide img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+}
+
+/* Animation de défilement horizontal - défile exactement la moitié (12 références) */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
-  .carouselContainer {
-    width: 1200px;
-    height: 200px;
-    overflow: hidden;
-    margin: 50px;
+  100% {
+    transform: translateX(calc(-260px * 12)); /* Défile exactement 12 références avec nouvelle largeur */
   }
-  
-  .slides {
-    display: flex;
-    /* Utilisation de "white-space: nowrap;" pour éviter le retour à la ligne des slides */
-    white-space: nowrap;
-    animation: scroll 5s linear infinite; /* Applique l'animation au conteneur de carousel */
-  }
-  
-  .slide {
-    box-sizing: border-box;
-    text-align: center;
-    margin: 20px;
-    box-shadow: 5px 5px 5px black;
-    background-color: #f0f0f0;
-    /* Ajoutez d'autres styles de design selon vos besoins */
-    width: 100%; /* Chaque slide occupe 100% de la largeur du conteneur */
-  }
-  
-  /* Animation de défilement horizontal */
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-  /* Arrête l'animation au survol du carousel */
+}  /* Arrête l'animation au survol du carousel */
   .carouselContainer:hover .slides {
     animation-play-state: paused;
   }

@@ -3,16 +3,19 @@ import React from 'react';
 import styles from './Reference.module.css';
 
 const ReferenceList = ({ references }) => {
+    // Dupliquer les références pour créer un effet de boucle infinie
+    const duplicatedReferences = [...references, ...references];
+    
     return (
         <>
             <h2 className={styles.title}>Références</h2>
             <div className={styles.carouselContainer}>
                 <div className={styles.slides}>
-                {references.map((reference) => (
+                {duplicatedReferences.map((reference, index) => (
                     
-                        <div key={reference.id} className={styles.slide}>
+                        <div key={`${reference.id}-${index}`} className={styles.slide}>
                             
-                            <img src={reference.imageUrl} alt="" />
+                            <img src={reference.imageUrl} alt={reference.name} />
                         </div>
                     
                 ))}
