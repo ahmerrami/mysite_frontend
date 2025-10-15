@@ -13,7 +13,12 @@ import ContactsList from './pages/ContactList/ContactsList.jsx';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Import des fonctionnalités conditionnelles
+import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
 import Conditions from './pages/Stage/Conditions.jsx';
+
+// Import de la configuration des fonctionnalités
+import { FEATURES, isFeatureEnabled } from './config/features.js';
 
 const App = () => {
   const imageUrl = './logo.png';
@@ -34,9 +39,15 @@ const App = () => {
               <Nav.Link as={Link} to="/"><b>Home</b></Nav.Link>
               <Nav.Link as={Link} to="/about"><b>About</b></Nav.Link>
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
-              <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
-              <Nav.Link as={Link} to="/ao"><b>Appels d offres</b></Nav.Link>
-              {/* <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link> */}
+              {isFeatureEnabled('OMRA') && FEATURES.OMRA.showInMenu && (
+                <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
+              )}
+              {isFeatureEnabled('APPELS_OFFRES') && FEATURES.APPELS_OFFRES.showInMenu && (
+                <Nav.Link as={Link} to="/ao"><b>Appels d offres</b></Nav.Link>
+              )}
+              {isFeatureEnabled('STAGES') && FEATURES.STAGES.showInMenu && (
+                <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link>
+              )}
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -45,9 +56,15 @@ const App = () => {
           <Route path="/" element={<Slider />} />
           <Route path="/about" element={<About />} />
           <Route path="/reference" element={<Reference />} />
-          <Route path="/omra" element={<Omra />} />
-          <Route path="/ao" element={<AO />} />
-          {/* <Route path="/stage" element={<MultiStepForm />} /> */}
+          {isFeatureEnabled('OMRA') && FEATURES.OMRA.showInRoutes && (
+            <Route path="/omra" element={<Omra />} />
+          )}
+          {isFeatureEnabled('APPELS_OFFRES') && FEATURES.APPELS_OFFRES.showInRoutes && (
+            <Route path="/ao" element={<AO />} />
+          )}
+          {isFeatureEnabled('STAGES') && FEATURES.STAGES.showInRoutes && (
+            <Route path="/stage" element={<MultiStepForm />} />
+          )}
           <Route path="/conditions" element={<Conditions />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 

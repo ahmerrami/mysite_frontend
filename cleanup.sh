@@ -2,6 +2,7 @@
 
 # 🧹 Script de nettoyage automatique du projet
 # Supprime tous les fichiers non nécessaires au fonctionnement du site web
+# PRESERVE le système de gestion des fonctionnalités (Stage, PDFViewer, etc.)
 
 echo "🧹 Nettoyage du projet mysite_frontend"
 echo "======================================"
@@ -25,10 +26,11 @@ rm -f AWS_DEPLOYMENT_GUIDE.md CONFIGURATION_DNS_OVH.md DEPLOYMENT_FILES.md
 rm -f DEPLOYMENT_SUMMARY.md DNS_PROBLEM_SOLVED.md GUIDE_REDIRECTION_OVH.md
 rm -f SOLUTION_IMMEDIATE.md URL_DIAGNOSTIC.md FICHIERS_INUTILES.md
 
-# 2. Supprimer les scripts non essentiels (GARDER deploy-s3.sh)
+# 2. Supprimer les scripts non essentiels (GARDER deploy-s3.sh et scripts de gestion)
 echo "🔧 Suppression des scripts non essentiels..."
 rm -f check-dns.sh check-redirect.sh configure-domain.sh
 rm -f deploy-ec2.sh setup-aws.sh
+# CONSERVER : deploy-s3.sh, toggle-stages.sh, manage-features.sh (gestion des fonctionnalités)
 
 # 3. Supprimer les configurations alternatives
 echo "⚙️  Suppression des configurations alternatives..."
@@ -37,7 +39,8 @@ rm -f amplify.yml nginx.conf bucket-policy.json
 # 5. Supprimer les fichiers GitHub Pages
 echo "🌐 Suppression des fichiers GitHub Pages..."
 rm -rf docs/
-rm -f CNAME index.html
+rm -f CNAME
+# CONSERVER index.html (fichier principal Vite)
 
 # 6. Supprimer les variables d'environnement si vides
 echo "🌍 Vérification des variables d'environnement..."
@@ -65,7 +68,11 @@ echo "🚀 Fichiers conservés pour le fonctionnement :"
 echo "   ✅ Code source React (src/)"
 echo "   ✅ Configuration build (package.json, vite.config.js)"
 echo "   ✅ Script de déploiement (deploy-s3.sh)"
+echo "   ✅ Scripts de gestion des fonctionnalités (toggle-stages.sh, manage-features.sh)"
+echo "   ✅ Configuration des fonctionnalités (src/config/features.js)"
 echo "   ✅ Ressources publiques (public/)"
+echo "   ✅ Composants configurables (Stage/, PDFViewer/, etc.)"
 echo ""
 echo "🔥 Votre projet est maintenant optimisé !"
 echo "   Pour déployer : ./deploy-s3.sh"
+echo "   Pour gérer les fonctionnalités : ./toggle-stages.sh ou ./manage-features.sh"
