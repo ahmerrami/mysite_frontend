@@ -13,7 +13,6 @@ import ContactsList from './pages/ContactList/ContactsList.jsx';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
 import Conditions from './pages/Stage/Conditions.jsx';
 
 const App = () => {
@@ -37,7 +36,7 @@ const App = () => {
               <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
               <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
               <Nav.Link as={Link} to="/ao"><b>Appels d offres</b></Nav.Link>
-              <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link>
+              {/* <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link> */}
               <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -48,7 +47,7 @@ const App = () => {
           <Route path="/reference" element={<Reference />} />
           <Route path="/omra" element={<Omra />} />
           <Route path="/ao" element={<AO />} />
-          <Route path="/stage" element={<MultiStepForm />} />
+          {/* <Route path="/stage" element={<MultiStepForm />} /> */}
           <Route path="/conditions" element={<Conditions />} />
           <Route path="/contact" element={<ContactsList />} />
         </Routes> 
