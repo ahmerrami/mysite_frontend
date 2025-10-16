@@ -5,13 +5,13 @@
   margin: 0 auto;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8f9fa;
+  background: #f8f8f8;
   min-height: 100vh;
 }
 
 /* En-tête du formulaire */
 .formHeader {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
   color: white;
   padding: 40px 30px;
   border-radius: 20px 20px 0 0;
@@ -49,7 +49,7 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(90deg, #000000 0%, #666666 100%);
   border-radius: 4px;
   transition: width 0.5s ease;
 }
@@ -92,14 +92,14 @@
 
 .stepIndicator.active .stepNumber {
   background: white;
-  color: #667eea;
+  color: #000000;
   border-color: white;
   box-shadow: 0 4px 15px rgba(255,255,255,0.3);
 }
 
 .stepIndicator.completed .stepNumber {
-  background: #4facfe;
-  border-color: #4facfe;
+  background: #333333;
+  border-color: #333333;
   color: white;
 }
 
@@ -121,19 +121,19 @@
   text-align: center;
   margin-bottom: 40px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #f1f3f4;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .stepTitle {
   font-size: 2rem;
-  color: #2c3e50;
+  color: #000000;
   margin-bottom: 10px;
   font-weight: 600;
 }
 
 .stepDescription {
   font-size: 1.1rem;
-  color: #666;
+  color: #666666;
   margin-bottom: 0;
 }
 
@@ -171,13 +171,13 @@
   display: block;
   font-size: 1rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: #000000;
   margin-bottom: 8px;
 }
 
 .formLabel.required::after {
   content: ' *';
-  color: #e74c3c;
+  color: #666666;
 }
 
 .formInput,
@@ -185,7 +185,7 @@
 .formTextarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e1e8ed;
+  border: 2px solid #e0e0e0;
   border-radius: 12px;
   font-size: 1rem;
   font-family: inherit;
@@ -197,8 +197,8 @@
 .formSelect:focus,
 .formTextarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
 }
 
@@ -208,7 +208,7 @@
 }
 
 .formError {
-  color: #e74c3c;
+  color: #666666;
   font-size: 0.9rem;
   margin-top: 5px;
   display: flex;
@@ -246,20 +246,20 @@
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btnPrimary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .btnSecondary {
-  background: #f8f9fa;
-  color: #666;
-  border: 2px solid #e1e8ed;
+  background: #f8f8f8;
+  color: #666666;
+  border: 2px solid #e0e0e0;
 }
 
 .btnSecondary:hover {

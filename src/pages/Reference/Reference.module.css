@@ -2,7 +2,7 @@
   margin: 40px auto 20px;
   text-align: center;
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -11,7 +11,7 @@
   max-width: 1000px;
   margin: 0 auto 60px;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #f8f8f8 0%, #e0e0e0 100%);
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
@@ -22,7 +22,7 @@
 
 .subtitle {
   font-size: 1.8rem;
-  color: #34495e;
+  color: #333333;
   margin-bottom: 25px;
   font-weight: 600;
   font-style: italic;
@@ -31,7 +31,7 @@
 .description {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #555;
+  color: #333333;
   margin-bottom: 20px;
   text-align: justify;
   max-width: 800px;
@@ -71,7 +71,7 @@
 
 .highlight {
   font-size: 1.2rem;
-  color: #2980b9;
+  color: #000000;
   font-weight: 500;
   margin-top: 30px;
   font-style: italic;
@@ -101,9 +101,10 @@
   top: 50%;
   margin-left: -80px;
   margin-top: -80px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border: 2px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
