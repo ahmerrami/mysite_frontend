@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button, Alert } from 'react-bootstrap';
+import styles from './MultiStepForm.module.css';
 
-function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, periodes }) {
+function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, periodes, errors }) {
   const { selectedPeriode, cv, lettre, isChecked } = formData;
   const [cvError, setCvError] = useState('');
   const [lettreError, setLettreError] = useState('');
 
   const validateStep = () => {
-    if (!selectedPeriode || !cv || !lettre || !isChecked || cvError || lettreError) {
-      return false;
-    }
-    return true;
+    return selectedPeriode && cv && lettre && isChecked && !cvError && !lettreError;
   };
 
   const handleFileChange = (e) => {
@@ -34,65 +31,159 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         }
       }
 
-      handleChange(e); // Call the original handleChange function
+      handleChange(e);
     }
   };
 
   return (
-    <>
-      <h4>Dépot de dossier</h4>
-      <hr/>
-      <Form.Group>
-        <Form.Label>Période de stage</Form.Label>
-        <Form.Control as="select" custom id="selectedPeriode" name="selectedPeriode" value={selectedPeriode} onChange={handleChange} required>
-          <option value="">--Période désirée--</option>
-          {periodes.map(periode => (
-            <option key={periode.id} value={periode.id}>{periode.periode}</option>
-          ))}
-        </Form.Control>
-      </Form.Group>
-      <Form.Group controlId="cv">
-        <Form.Label>CV - format pdf</Form.Label>
-        <Form.Control 
-          type="file"
-          name="cv"
-          onChange={handleFileChange} 
-          accept=".pdf"
-          required 
-        />
-        {cvError && <Alert variant="danger">{cvError}</Alert>}
-      </Form.Group>
-      <Form.Group controlId="lettre">
-        <Form.Label>Lettre de motivation - format pdf</Form.Label>
-        <Form.Control 
-          type="file"
-          name="lettre"
-          onChange={handleFileChange}
-          accept=".pdf"
-          required 
-        />
-        {lettreError && <Alert variant="danger">{lettreError}</Alert>}
-      </Form.Group>
-      <Form.Group controlId="isChecked">
-        <Form.Check
-          type="checkbox"
-          id="conditions"
-          name="isChecked"
-          label={
+    <div className={styles.stepContainer}>
+      <div className={styles.formGrid}>
+        {/* Période de stage */}
+        <div className={styles.formGroup}>
+          <label className={`${styles.formLabel} ${styles.required}`}>
+            Période de stage souhaitée
+          </label>
+          <select
+            name="selectedPeriode"
+            value={selectedPeriode}
+            onChange={handleChange}
+            className={styles.formSelect}
+            required
+          >
+            <option value="">Choisissez votre période préférée</option>
+            {periodes.map((periode) => (
+              <option key={periode.id} value={periode.id}>
+                {periode.periode}
+              </option>
+            ))}
+          </select>
+          {errors.selectedPeriode && <div className={styles.formError}>{errors.selectedPeriode}</div>}
+        </div>
+
+        {/* Documents à télécharger */}
+        <div className={styles.documentsSection}>
+          <h3 className={styles.sectionSubtitle}>Documents requis</h3>
+          
+          {/* CV */}
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Curriculum Vitae (CV)
+            </label>
+            <div className={`${styles.fileUpload} ${cv ? styles.fileSelected : ''}`}>
+              <input
+                type="file"
+                name="cv"
+                onChange={handleFileChange}
+                accept=".pdf"
+                required
+              />
+              <div className={styles.fileUploadLabel}>
+                <span className={styles.fileIcon}>📄</span>
+                <div>
+                  <strong>{cv ? cv.name : 'Sélectionner votre CV'}</strong>
+                  <p>Format PDF uniquement - Max 1 Mo</p>
+                </div>
+              </div>
+            </div>
+            {cvError && <div className={styles.formError}>{cvError}</div>}
+            {errors.cv && <div className={styles.formError}>{errors.cv}</div>}
+          </div>
+
+          {/* Lettre de motivation */}
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Lettre de Motivation
+            </label>
+            <div className={`${styles.fileUpload} ${lettre ? styles.fileSelected : ''}`}>
+              <input
+                type="file"
+                name="lettre"
+                onChange={handleFileChange}
+                accept=".pdf"
+                required
+              />
+              <div className={styles.fileUploadLabel}>
+                <span className={styles.fileIcon}>📝</span>
+                <div>
+                  <strong>{lettre ? lettre.name : 'Sélectionner votre lettre'}</strong>
+                  <p>Format PDF uniquement - Max 1 Mo</p>
+                </div>
+              </div>
+            </div>
+            {lettreError && <div className={styles.formError}>{lettreError}</div>}
+            {errors.lettre && <div className={styles.formError}>{errors.lettre}</div>}
+          </div>
+        </div>
+
+        {/* Conditions d'utilisation */}
+        <div className={styles.checkboxGroup}>
+          <div className={styles.customCheckbox}>
+            <input
+              type="checkbox"
+              id="conditions"
+              name="isChecked"
+              checked={isChecked}
+              onChange={handleChange}
+              required
+            />
+            <div className={styles.checkboxLabel}></div>
+          </div>
+          <label htmlFor="conditions" className={styles.checkboxText}>
+            J'accepte{' '}
+            <Link to="/conditions" className={styles.conditionsLink}>
+              les termes et conditions
+            </Link>{' '}
+            de candidature et certifie que les informations fournies sont exactes.
+          </label>
+        </div>
+        {errors.isChecked && <div className={styles.formError}>{errors.isChecked}</div>}
+
+        {/* Informations sur le processus */}
+        <div className={styles.infoBox}>
+          <div className={styles.infoIcon}>📋</div>
+          <div className={styles.infoContent}>
+            <h4>Prochaines étapes</h4>
+            <ul>
+              <li>Votre candidature sera examinée sous 48h</li>
+              <li>Vous recevrez un email de confirmation</li>
+              <li>Un entretien peut être organisé si votre profil correspond</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Boutons de navigation */}
+      <div className={styles.buttonGroup}>
+        <button
+          type="button"
+          onClick={handlePrevious}
+          className={`${styles.btn} ${styles.btnSecondary}`}
+          disabled={loading}
+        >
+          <span>←</span>
+          Précédent
+        </button>
+        
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={!validateStep() || loading}
+          className={`${styles.btn} ${styles.btnSuccess}`}
+        >
+          {loading ? (
             <>
-              J'accepte{' '}
-              <Link to="/conditions">les termes et conditions</Link>
+              <div className={styles.miniSpinner}></div>
+              Envoi en cours...
             </>
-          }
-          checked={isChecked}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      
-      <hr/>
-      <Button variant="secondary" onClick={handlePrevious}>Previous</Button>{' '}
-      <Button variant="primary" onClick={handleSubmit} disabled={!validateStep() || loading}>Submit</Button>
-    </>
+          ) : (
+            <>
+              Envoyer ma candidature
+              <span>✉️</span>
+            </>
+          )}
+        </button>
+      </div>
+    </div>
   );
 }
 

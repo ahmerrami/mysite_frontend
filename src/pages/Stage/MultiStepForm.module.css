@@ -1,0 +1,582 @@
+/* Formulaire de candidature moderne */
+
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* En-tête du formulaire */
+.formHeader {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px 30px;
+  border-radius: 20px 20px 0 0;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.formTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.formSubtitle {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* Barre de progression */
+.progressContainer {
+  margin-top: 30px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.stepIndicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.stepIndicator.active {
+  opacity: 1;
+}
+
+.stepIndicator.completed {
+  opacity: 1;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 2px solid rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.stepIndicator.active .stepNumber {
+  background: white;
+  color: #667eea;
+  border-color: white;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+}
+
+.stepIndicator.completed .stepNumber {
+  background: #4facfe;
+  border-color: #4facfe;
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Corps du formulaire */
+.formBody {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.stepHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f1f3f4;
+}
+
+.stepTitle {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.stepDescription {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.stepContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Grille de formulaire */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+/* Styles pour les champs de formulaire */
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.formLabel.required::after {
+  content: ' *';
+  color: #e74c3c;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e1e8ed;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.formError {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.formError::before {
+  content: '⚠️';
+  font-size: 0.8rem;
+}
+
+/* Boutons */
+.buttonGroup {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #f1f3f4;
+}
+
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btnSecondary {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #e1e8ed;
+}
+
+.btnSecondary:hover {
+  background: #e9ecef;
+  border-color: #d6d9dc;
+  transform: translateY(-1px);
+}
+
+.btnSuccess {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(86, 171, 47, 0.3);
+}
+
+.btnSuccess:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(86, 171, 47, 0.4);
+}
+
+/* Upload de fichiers */
+.fileUpload {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.fileUpload input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.fileUploadLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border: 2px dashed #e1e8ed;
+  border-radius: 12px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.fileUpload:hover .fileUploadLabel {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.fileSelected {
+  border-color: #56ab2f !important;
+  background: rgba(86, 171, 47, 0.05) !important;
+}
+
+/* Checkbox personnalisée */
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.customCheckbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.customCheckbox input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #e1e8ed;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.customCheckbox input:checked + .checkboxLabel {
+  background: #667eea;
+  border-color: #667eea;
+}
+
+.customCheckbox input:checked + .checkboxLabel::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.checkboxText {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #555;
+  cursor: pointer;
+}
+
+.conditionsLink {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.conditionsLink:hover {
+  text-decoration: underline;
+}
+
+/* Sections supplémentaires */
+.documentsSection {
+  margin: 30px 0;
+}
+
+.sectionSubtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f1f3f4;
+}
+
+.infoBox {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  margin: 25px 0;
+}
+
+.infoIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.infoContent h4 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.infoContent p,
+.infoContent ul {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.infoContent ul {
+  padding-left: 20px;
+}
+
+.infoContent li {
+  margin-bottom: 5px;
+}
+
+/* Icônes de fichiers */
+.fileIcon {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+/* Mini spinner pour le bouton */
+.miniSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+/* Messages d'état */
+.successMessage,
+.errorMessage {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+  max-width: 400px;
+  animation: slideIn 0.5s ease;
+}
+
+.successMessage {
+  border-left: 4px solid #56ab2f;
+}
+
+.errorMessage {
+  border-left: 4px solid #e74c3c;
+}
+
+.messageIcon {
+  font-size: 2rem;
+}
+
+.successMessage h3,
+.errorMessage h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.successMessage p,
+.errorMessage p {
+  margin: 0;
+  color: #666;
+}
+
+/* Overlay de chargement */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.loadingSpinner {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 10px;
+  }
+  
+  .formHeader,
+  .formBody {
+    padding: 30px 20px;
+  }
+  
+  .formTitle {
+    font-size: 2rem;
+  }
+  
+  .stepIndicators {
+    gap: 10px;
+  }
+  
+  .stepLabel {
+    font-size: 0.8rem;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .successMessage,
+  .errorMessage {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 20px 0;
+  }
+}

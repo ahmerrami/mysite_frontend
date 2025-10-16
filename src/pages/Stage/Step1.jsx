@@ -1,116 +1,193 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import styles from './MultiStepForm.module.css';
 
-function Step1({ formData, handleChange, handleNext, villes }) {
+function Step1({ formData, handleChange, handleNext, villes, errors }) {
   const { civilite, nom, prenom, cin, dateN, tel, email, adress, ville } = formData;
 
   const validateStep = () => {
-    if (!civilite || !nom || !prenom || !cin || !dateN || !tel || !email || !adress || !ville) {
-      return false;
-    }
-    return true;
+    return civilite && nom && prenom && cin && dateN && tel && email && adress && ville;
   };
 
   return (
-    <>
-        <h4>Informations personnelles</h4>
-        <hr/>
-      <Form.Group controlId="civilite">
-        <Form.Label>Civilité</Form.Label>
-        <Form.Select
-          name="civilite"
-          onChange={handleChange}
-          value={civilite}
-          required
+    <div className={styles.stepContainer}>
+      <div className={styles.formGrid}>
+        {/* Civilité */}
+        <div className={styles.formGroup}>
+          <label className={`${styles.formLabel} ${styles.required}`}>
+            Civilité
+          </label>
+          <select
+            name="civilite"
+            value={civilite}
+            onChange={handleChange}
+            className={styles.formSelect}
+            required
+          >
+            <option value="">Sélectionnez votre civilité</option>
+            <option value="M.">Monsieur</option>
+            <option value="Mlle">Mademoiselle</option>
+            <option value="Mme">Madame</option>
+          </select>
+          {errors.civilite && <div className={styles.formError}>{errors.civilite}</div>}
+        </div>
+
+        {/* Nom et Prénom */}
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Nom de famille
+            </label>
+            <input
+              type="text"
+              name="nom"
+              value={nom}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="Votre nom"
+              required
+            />
+            {errors.nom && <div className={styles.formError}>{errors.nom}</div>}
+          </div>
+          
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Prénom
+            </label>
+            <input
+              type="text"
+              name="prenom"
+              value={prenom}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="Votre prénom"
+              required
+            />
+            {errors.prenom && <div className={styles.formError}>{errors.prenom}</div>}
+          </div>
+        </div>
+
+        {/* CIN et Date de naissance */}
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Numéro CIN
+            </label>
+            <input
+              type="text"
+              name="cin"
+              value={cin}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="Ex: AB123456"
+              required
+            />
+            {errors.cin && <div className={styles.formError}>{errors.cin}</div>}
+          </div>
+          
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Date de naissance
+            </label>
+            <input
+              type="date"
+              name="dateN"
+              value={dateN}
+              onChange={handleChange}
+              className={styles.formInput}
+              required
+            />
+            {errors.dateN && <div className={styles.formError}>{errors.dateN}</div>}
+          </div>
+        </div>
+
+        {/* Téléphone et Email */}
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Téléphone
+            </label>
+            <input
+              type="tel"
+              name="tel"
+              value={tel}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="06 XX XX XX XX"
+              required
+            />
+            {errors.tel && <div className={styles.formError}>{errors.tel}</div>}
+          </div>
+          
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Adresse email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="votre.email@exemple.com"
+              required
+            />
+            {errors.email && <div className={styles.formError}>{errors.email}</div>}
+          </div>
+        </div>
+
+        {/* Adresse */}
+        <div className={styles.formGroup}>
+          <label className={`${styles.formLabel} ${styles.required}`}>
+            Adresse complète
+          </label>
+          <textarea
+            name="adress"
+            value={adress}
+            onChange={handleChange}
+            className={styles.formTextarea}
+            placeholder="Votre adresse complète (rue, quartier, ville)"
+            rows="3"
+            required
+          />
+          {errors.adress && <div className={styles.formError}>{errors.adress}</div>}
+        </div>
+
+        {/* Ville */}
+        <div className={styles.formGroup}>
+          <label className={`${styles.formLabel} ${styles.required}`}>
+            Ville de résidence
+          </label>
+          <select
+            name="ville"
+            value={ville}
+            onChange={handleChange}
+            className={styles.formSelect}
+            required
+          >
+            <option value="">Sélectionnez votre ville</option>
+            {villes.map((v) => (
+              <option key={v.id} value={v.id}>
+                {v.nom}
+              </option>
+            ))}
+          </select>
+          {errors.ville && <div className={styles.formError}>{errors.ville}</div>}
+        </div>
+      </div>
+
+      {/* Boutons de navigation */}
+      <div className={styles.buttonGroup}>
+        <button
+          type="button"
+          onClick={handleNext}
+          disabled={!validateStep()}
+          className={`${styles.btn} ${styles.btnPrimary}`}
         >
-          <option value="">-- Civilité --</option>
-          <option value="M.">M.</option>
-          <option value="Mlle">Mlle</option>
-          <option value="Mme">Mme</option>
-        </Form.Select>
-      </Form.Group>
-      <Form.Group controlId="nom">
-        <Form.Label>Nom</Form.Label>
-        <Form.Control 
-          type="text" 
-          name="nom" 
-          value={nom} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="prenom">
-        <Form.Label>Prénom</Form.Label>
-        <Form.Control 
-          type="text" 
-          name="prenom" 
-          value={prenom} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="cin">
-        <Form.Label>CIN</Form.Label>
-        <Form.Control 
-          type="text" 
-          name="cin" 
-          value={cin} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="dateN">
-        <Form.Label>Date de naissance</Form.Label>
-        <Form.Control 
-          type="date" 
-          name="dateN" 
-          value={dateN} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="tel">
-        <Form.Label>Téléphone</Form.Label>
-        <Form.Control 
-          type="text" 
-          name="tel" 
-          value={tel} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="email">
-        <Form.Label>Email</Form.Label>
-        <Form.Control 
-          type="email" 
-          name="email" 
-          value={email} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group controlId="adress">
-        <Form.Label>Adresse</Form.Label>
-        <Form.Control 
-          type="text" 
-          name="adress" 
-          value={adress} 
-          onChange={handleChange} 
-          required 
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Ville</Form.Label>
-        <Form.Control as="select" custom id="ville" name="ville" value={ville} onChange={handleChange} required>
-        <option value="">--Ville--</option>
-          {villes.map(ville => (
-           <option key={ville.id} value={ville.id}>{ville.ville}</option>
-          ))}          
-        </Form.Control>
-      </Form.Group>
-      <hr/>
-      <Button variant="primary" onClick={handleNext} disabled={!validateStep()}>Next</Button>
-    </>
+          Continuer
+          <span>→</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
