@@ -1,58 +1,143 @@
 .title {
-  margin: 20px auto;
+  margin: 40px auto 20px;
   text-align: center;
-  font-size: 2rem;
-  color: #333;
-}
-.carouselContainer {
-  width: 100%;
-  max-width: 1400px;
-  height: 280px;
-  overflow: hidden;
-  margin: 50px auto;
-  position: relative;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: bold;
 }
 
-.slides {
-  display: flex;
-  width: calc(260px * 24); /* 12 références * 2 (dupliquées) * largeur augmentée */
-  animation: scroll 40s linear infinite; /* Durée ajustée pour un défilement fluide */
+/* Section introductive */
+.introSection {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.slide {
-  flex: 0 0 240px; /* Largeur augmentée pour chaque slide */
-  height: 200px; /* Hauteur augmentée */
-  box-sizing: border-box;
+.introContent {
   text-align: center;
-  margin: 20px 10px;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
-  background-color: #f0f0f0;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 20px;
+  text-align: justify;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expertiseItem {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
+  gap: 12px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
 }
 
-.slide:hover {
-  transform: scale(1.05);
+.expertiseItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-.slide img {
+.icon {
+  font-size: 1.5rem;
+}
+
+.highlight {
+  font-size: 1.2rem;
+  color: #2980b9;
+  font-weight: 500;
+  margin-top: 30px;
+  font-style: italic;
+}
+
+.circularCarousel {
+  width: 800px;
+  height: 800px;
+  margin: 50px auto;
+  position: relative;
+  perspective: 1000px;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate 30s linear infinite;
+}
+
+.circleItem {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  left: 50%;
+  top: 50%;
+  margin-left: -80px;
+  margin-top: -80px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  transform: 
+    rotateY(calc(var(--item-index) * (360deg / var(--total-items))))
+    translateZ(320px);
+}
+
+.circleItem:hover {
+  transform: 
+    rotateY(calc(var(--item-index) * (360deg / var(--total-items))))
+    translateZ(360px)
+    scale(1.15);
+}
+
+.circleItem img {
   max-width: 95%;
   max-height: 95%;
   object-fit: contain;
+  border-radius: 8px;
 }
 
-/* Animation de défilement horizontal - défile exactement la moitié (12 références) */
-@keyframes scroll {
+/* Animation de rotation continue */
+@keyframes rotate {
   0% {
-    transform: translateX(0);
+    transform: rotateY(0deg);
   }
   100% {
-    transform: translateX(calc(-260px * 12)); /* Défile exactement 12 références avec nouvelle largeur */
+    transform: rotateY(360deg);
   }
-}  /* Arrête l'animation au survol du carousel */
-  .carouselContainer:hover .slides {
-    animation-play-state: paused;
-  }
+}
+
+/* Pause au survol du carousel */
+.circularCarousel:hover .circle {
+  animation-play-state: paused;
+}

@@ -1,4 +1,304 @@
-.txt {
-    margin: 20px;
-    text-align: justify;
+/* Page About - Design professionnel et moderne */
+
+.aboutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Section Hero */
+.heroSection {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  border-radius: 20px;
+  margin-bottom: 60px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.heroSubtitle {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+.heroHighlight {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.yearBadge, .affiliationBadge {
+  background: rgba(255,255,255,0.2);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Section Présentation */
+.presentationSection {
+  margin-bottom: 80px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  border-radius: 2px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.textContent {
+  padding-right: 20px;
+}
+
+.description {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 25px;
+  text-align: justify;
+}
+
+.statsBox {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.statItem {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Section Expertise */
+.expertiseSection {
+  margin-bottom: 80px;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 20px;
+}
+
+.expertiseIntro {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #555;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.serviceCard {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.serviceIcon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.serviceCard h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.serviceCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.serviceCard li {
+  padding: 8px 0;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+.serviceCard li:last-child {
+  border-bottom: none;
+}
+
+/* Section Réalisations */
+.achievementsSection {
+  margin-bottom: 80px;
+}
+
+.achievementsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.achievementItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.achievementItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.achievementIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.achievementItem strong {
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.achievementItem p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Section CTA */
+.ctaSection {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.ctaTitle {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.ctaDescription {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aboutContainer {
+    padding: 10px;
+  }
+  
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+  
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .heroHighlight {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievementsList {
+    grid-template-columns: 1fr;
+  }
+  
+  .expertiseSection, .ctaSection {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .achievementItem {
+    flex-direction: column;
+    text-align: center;
+  }
 }

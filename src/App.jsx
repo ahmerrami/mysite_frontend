@@ -1,7 +1,5 @@
 // import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import About from './pages/About/About.jsx';
 import Reference from './pages/Reference/Reference.jsx';
 
@@ -11,7 +9,6 @@ import Slider from './pages/Slider/Slider.jsx';
 import ContactsList from './pages/ContactList/ContactsList.jsx';
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import des fonctionnalités conditionnelles
 import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
@@ -24,34 +21,62 @@ const App = () => {
   const imageUrl = './logo.png';
   return (
       <Router>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand as={Link} to="/">
-            <img src={imageUrl}
-            alt="Logo"
-            width="80"
-            height="60"
-            className="d-inline-block align-top"/>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            {/* <Nav className="ml-auto"> */}
-            <Nav className="mr-auto justify-content-between w-100">
-              <Nav.Link as={Link} to="/"><b>Home</b></Nav.Link>
-              <Nav.Link as={Link} to="/about"><b>About</b></Nav.Link>
-              <Nav.Link as={Link} to="/reference"><b>Références</b></Nav.Link>
+        <nav className="modern-navbar">
+          <div className="navbar-container">
+            {/* Logo et marque */}
+            <div className="navbar-brand">
+              <Link to="/" className="brand-link">
+                <img src={imageUrl} alt="Supratours Travel" className="brand-logo"/>
+                <span className="brand-text">Supratours Travel</span>
+              </Link>
+            </div>
+
+            {/* Menu de navigation */}
+            <div className="navbar-menu">
+              <Link to="/" className="nav-item">
+                <span className="nav-icon">🏠</span>
+                <span className="nav-text">Accueil</span>
+              </Link>
+              <Link to="/about" className="nav-item">
+                <span className="nav-icon">ℹ️</span>
+                <span className="nav-text">À Propos</span>
+              </Link>
+              <Link to="/reference" className="nav-item">
+                <span className="nav-icon">🏆</span>
+                <span className="nav-text">Références</span>
+              </Link>
               {isFeatureEnabled('OMRA') && FEATURES.OMRA.showInMenu && (
-                <Nav.Link as={Link} to="/omra"><b>Omra</b></Nav.Link>
+                <Link to="/omra" className="nav-item">
+                  <span className="nav-icon">🕌</span>
+                  <span className="nav-text">Omra</span>
+                </Link>
               )}
               {isFeatureEnabled('APPELS_OFFRES') && FEATURES.APPELS_OFFRES.showInMenu && (
-                <Nav.Link as={Link} to="/ao"><b>Appels d offres</b></Nav.Link>
+                <Link to="/ao" className="nav-item">
+                  <span className="nav-icon">📋</span>
+                  <span className="nav-text">Appels d'Offres</span>
+                </Link>
               )}
               {isFeatureEnabled('STAGES') && FEATURES.STAGES.showInMenu && (
-                <Nav.Link as={Link} to="/stage"><b>Stages</b></Nav.Link>
+                <Link to="/stage" className="nav-item">
+                  <span className="nav-icon">🎓</span>
+                  <span className="nav-text">Stages</span>
+                </Link>
               )}
-              <Nav.Link as={Link} to="/contact"><b>Contacts</b></Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+              <Link to="/contact" className="nav-item contact-item">
+                <span className="nav-icon">📞</span>
+                <span className="nav-text">Contact</span>
+              </Link>
+            </div>
+
+            {/* Bouton mobile menu (pour responsive) */}
+            <div className="mobile-menu-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </nav>
         <Routes>
           <Route path="/" element={<Slider />} />
           <Route path="/about" element={<About />} />

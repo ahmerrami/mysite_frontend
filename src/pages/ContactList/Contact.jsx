@@ -1,43 +1,76 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 import PhoneIcon from '../Icon/PhoneIcon';
 import MailIcon from '../Icon/MailIcon';
+import styles from './Contact.module.css';
 
-const Contact = ({ imageUrl, name, position, email, phone }) => {
+const Contact = ({ imageUrl, name, position, address, email, phone, type }) => {
+  const isPerson = type === 'person';
+  const isAgency = type === 'agency';
+
   return (
-    <Card 
-      style={{ 
-        //marginBottom: '20px',
-        backgroundColor:'rgba(176,140,93,255)',
-        color: 'white',
-        textAlign: 'center', 
-        borderRadius: '10px', 
-        boxShadow: '5px 5px 5px hsla(0, 0%, 0%, 0.112)',
+    <div className={`${styles.contactCard} ${isPerson ? styles.personCard : styles.agencyCard}`}>
+      <div className={styles.cardHeader}>
+        <div className={styles.imageContainer}>
+          <img 
+            src={imageUrl} 
+            alt={name}
+            className={`${styles.contactImage} ${isPerson ? styles.personImage : styles.agencyImage}`}
+          />
+          {isPerson && <div className={styles.onlineIndicator}></div>}
+        </div>
+        <div className={styles.contactInfo}>
+          <h3 className={styles.contactName}>{name}</h3>
+          <p className={styles.contactPosition}>{position}</p>
+          {address && <p className={styles.contactAddress}>{address}</p>}
+        </div>
+      </div>
 
-        padding: '20px',
-        margin: '10px',
-        maxWidth: '320px',
-        minWidth: '320px',
-        minHeight: '420px',
-        display: 'inline-block' 
-      }}
-    >
-      <Card.Img 
-        className="mx-auto d-block" 
-        variant="top" 
-        src={imageUrl} 
-        style={{ maxWidth: '30%', borderRadius: '50%' }} 
-      />
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <hr/>
-        <Card.Subtitle >{position}</Card.Subtitle>
-        <hr/>
-        <Card.Text><MailIcon /> {email}</Card.Text>
-        <hr/>
-        <Card.Text><PhoneIcon /> {phone}</Card.Text>
-      </Card.Body>
-    </Card>
+      <div className={styles.cardBody}>
+        <div className={styles.contactDetails}>
+          {email && (
+            <div className={styles.contactItem}>
+              <MailIcon />
+              <a href={`mailto:${email}`} className={styles.contactLink}>
+                {email}
+              </a>
+            </div>
+          )}
+          {phone && (
+            <div className={styles.contactItem}>
+              <PhoneIcon />
+              <a href={`tel:${phone}`} className={styles.contactLink}>
+                {phone}
+              </a>
+            </div>
+          )}
+        </div>
+
+        {isPerson && (
+          <div className={styles.actionButtons}>
+            <button className={styles.primaryButton}>
+              💬 Contacter
+            </button>
+          </div>
+        )}
+
+        {isAgency && (
+          <div className={styles.agencyFeatures}>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>🎫</span>
+              <span>Billetterie</span>
+            </div>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>ℹ️</span>
+              <span>Informations</span>
+            </div>
+            <div className={styles.feature}>
+              <span className={styles.featureIcon}>🎒</span>
+              <span>Voyages</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

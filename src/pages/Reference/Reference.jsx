@@ -3,21 +3,59 @@ import React from 'react';
 import styles from './Reference.module.css';
 
 const ReferenceList = ({ references }) => {
-    // Dupliquer les références pour créer un effet de boucle infinie
-    const duplicatedReferences = [...references, ...references];
-    
     return (
         <>
-            <h2 className={styles.title}>Références</h2>
-            <div className={styles.carouselContainer}>
-                <div className={styles.slides}>
-                {duplicatedReferences.map((reference, index) => (
-                    
-                        <div key={`${reference.id}-${index}`} className={styles.slide}>
-                            
-                            <img src={reference.imageUrl} alt={reference.name} />
+            <h2 className={styles.title}>Nos Références</h2>
+            
+            {/* Section introductive */}
+            <div className={styles.introSection}>
+                <div className={styles.introContent}>
+                    <h3 className={styles.subtitle}>La confiance de nos partenaires, notre plus belle récompense</h3>
+                    <p className={styles.description}>
+                        Depuis notre création, <strong>Supratours Travel</strong> a eu l'honneur d'accompagner des institutions prestigieuses 
+                        et des organisations de renom dans la réalisation de leurs projets de voyage et de transport.
+                    </p>
+                    <p className={styles.description}>
+                        Nos partenaires nous font confiance pour leur expertise en matière de :
+                    </p>
+                    <div className={styles.expertiseGrid}>
+                        <div className={styles.expertiseItem}>
+                            <span className={styles.icon}>🚌</span>
+                            <span>Transport de groupes</span>
                         </div>
-                    
+                        <div className={styles.expertiseItem}>
+                            <span className={styles.icon}>🏛️</span>
+                            <span>Missions institutionnelles</span>
+                        </div>
+                        <div className={styles.expertiseItem}>
+                            <span className={styles.icon}>🕌</span>
+                            <span>Pèlerinages et Omra</span>
+                        </div>
+                        <div className={styles.expertiseItem}>
+                            <span className={styles.icon}>✈️</span>
+                            <span>Voyages d'affaires</span>
+                        </div>
+                    </div>
+                    <p className={styles.highlight}>
+                        <em>"Découvrez ci-dessous quelques-unes des organisations qui nous ont fait confiance pour leurs déplacements."</em>
+                    </p>
+                </div>
+            </div>
+
+            {/* Carousel circulaire des références */}
+            <div className={styles.circularCarousel}>
+                <div className={styles.circle}>
+                {references.map((reference, index) => (
+                    <div 
+                        key={reference.id} 
+                        className={styles.circleItem}
+                        style={{
+                            '--item-index': index,
+                            '--total-items': references.length
+                        }}
+                    >
+                        <img src={reference.imageUrl} alt={reference.name} />
+                    </div>
                 ))}
                 </div>
             </div>
