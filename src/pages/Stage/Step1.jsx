@@ -167,7 +167,7 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
             <option value="">Sélectionnez votre ville</option>
             {villes.map((v) => (
               <option key={v.id} value={v.id}>
-                {v.nom}
+                {v.nom || v.ville}
               </option>
             ))}
           </select>

@@ -41,12 +41,14 @@ function MultiStepForm() {
 
   const fetchData = async (endpoint, setData) => {
     try {
+      console.log(`🔍 Récupération ${endpoint}...`);
       const response = await fetch(`${API_URL}/${endpoint}/`);
       if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
       const data = await response.json();
+      console.log(`✅ ${endpoint} récupérées:`, data);
       setData(data);
     } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
+      console.error(`❌ Error fetching ${endpoint}:`, error);
     }
   };
 
@@ -105,29 +107,61 @@ function MultiStepForm() {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep(3)) return;
+    console.log('🚀 Début de la soumission...');
+    console.log('📋 Données du formulaire:', formData);
+    
+    if (!validateStep(3)) {
+      console.log('❌ Échec de la validation de l\'étape 3');
+      console.log('🔍 Erreurs de validation:', errors);
+      return;
+    }
 
+    console.log('✅ Validation réussie, envoi en cours...');
     setLoading(true);
+    
     try {
       const submitFormData = new FormData();
       Object.keys(formData).forEach(key => {
         if (formData[key] !== null && formData[key] !== '') {
+          console.log(`📎 Ajout ${key}:`, formData[key]);
           submitFormData.append(key, formData[key]);
         }
       });
 
-      const response = await fetch(`${API_URL}/`, {
+      // Envoi vers l'API
+      console.log('📡 Envoi vers l\'API...');
+      
+      const response = await fetch(`${API_URL}/form-stage/create/`, {
         method: 'POST',
         body: submitFormData,
       });
 
-      if (!response.ok) throw new Error('Erreur lors de la soumission');
+      console.log(`📊 Réponse API: ${response.status} ${response.statusText}`);
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('❌ Erreur API:', errorData);
+        
+        // Traiter les erreurs spécifiques
+        if (errorData.cv && errorData.cv.includes('No file was submitted')) {
+          setErrors(prev => ({ ...prev, cv: 'Le CV est obligatoire' }));
+        }
+        if (errorData.lettre && errorData.lettre.includes('No file was submitted')) {
+          setErrors(prev => ({ ...prev, lettre: 'La lettre de motivation est obligatoire' }));
+        }
+        
+        throw new Error(`Erreur ${response.status}: ${JSON.stringify(errorData)}`);
+      }
+
+      const responseData = await response.json();
+      console.log('✅ Succès API:', responseData);
+      
       setSuccessMessage('Votre candidature a été envoyée avec succès !');
       resetForm();
       setStep(1);
     } catch (error) {
-      setErrors(prev => ({ ...prev, submit: 'Erreur lors de l\'envoi. Veuillez réessayer.' }));
+      console.error('💥 Erreur lors de l\'envoi:', error);
+      setErrors(prev => ({ ...prev, submit: `Erreur lors de l'envoi: ${error.message}` }));
     } finally {
       setLoading(false);
     }

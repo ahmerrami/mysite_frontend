@@ -19,6 +19,12 @@ import { FEATURES, isFeatureEnabled } from './config/features.js';
 
 const App = () => {
   const imageUrl = './logo.png';
+  
+  // Debug temporaire
+  console.log('🔍 DEBUG - isFeatureEnabled STAGES:', isFeatureEnabled('STAGES'));
+  console.log('🔍 DEBUG - FEATURES.STAGES:', FEATURES.STAGES);
+  console.log('🔍 DEBUG - showInMenu:', FEATURES.STAGES.showInMenu);
+  
   return (
       <Router>
         <nav className="modern-navbar">

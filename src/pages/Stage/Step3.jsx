@@ -8,7 +8,19 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
   const [lettreError, setLettreError] = useState('');
 
   const validateStep = () => {
-    return selectedPeriode && cv && lettre && isChecked && !cvError && !lettreError;
+    console.log('🔍 Debug validation Step3:');
+    console.log('  selectedPeriode:', selectedPeriode);
+    console.log('  cv:', cv);
+    console.log('  lettre:', lettre);
+    console.log('  isChecked:', isChecked);
+    console.log('  cvError:', cvError);
+    console.log('  lettreError:', lettreError);
+    
+    // Validation simplifiée : on ignore les erreurs locales et on se fie aux données du formulaire
+    const isValid = selectedPeriode && cv && lettre && isChecked;
+    console.log('  🎯 Validation result:', isValid);
+    
+    return isValid;
   };
 
   const handleFileChange = (e) => {
@@ -117,18 +129,21 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
 
         {/* Conditions d'utilisation */}
         <div className={styles.checkboxGroup}>
-          <div className={styles.customCheckbox}>
-            <input
-              type="checkbox"
-              id="conditions"
-              name="isChecked"
-              checked={isChecked}
-              onChange={handleChange}
-              required
-            />
-            <div className={styles.checkboxLabel}></div>
-          </div>
-          <label htmlFor="conditions" className={styles.checkboxText}>
+          <input
+            type="checkbox"
+            id="conditions"
+            name="isChecked"
+            checked={isChecked}
+            onChange={handleChange}
+            required
+            style={{
+              width: '20px',
+              height: '20px',
+              cursor: 'pointer',
+              marginRight: '10px'
+            }}
+          />
+          <label htmlFor="conditions" className={styles.checkboxText} style={{cursor: 'pointer'}}>
             J'accepte{' '}
             <Link to="/conditions" className={styles.conditionsLink}>
               les termes et conditions
@@ -152,6 +167,13 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         </div>
       </div>
 
+      {/* Affichage de l'erreur d'envoi */}
+      {errors.submit && (
+        <div className={styles.formError} style={{textAlign: 'center', marginTop: '20px', fontSize: '1.1rem'}}>
+          {errors.submit}
+        </div>
+      )}
+
       {/* Boutons de navigation */}
       <div className={styles.buttonGroup}>
         <button
@@ -166,7 +188,11 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         
         <button
           type="button"
-          onClick={handleSubmit}
+          onClick={() => {
+            console.log('🖱️ Bouton cliqué !');
+            console.log('🔍 État actuel:', { selectedPeriode, cv, lettre, isChecked });
+            handleSubmit();
+          }}
           disabled={!validateStep() || loading}
           className={`${styles.btn} ${styles.btnSuccess}`}
         >

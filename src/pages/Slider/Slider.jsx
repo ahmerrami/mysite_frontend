@@ -4,7 +4,7 @@ function Images({images}) {
   return (
     <Carousel>
         {images.map((image) => (
-            <Carousel.Item interval={1000}>
+            <Carousel.Item key={image.id} interval={1000}>
                 <img
                 className="d-block w-100"
                 src={image.imageUrl}
