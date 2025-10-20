@@ -10,6 +10,11 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
 
   return (
     <div className={styles.stepContainer}>
+      {/* Message d'aide pour la completion du formulaire */}
+      <div className={`${styles.helperMessage} ${validateStep() ? styles.hidden : ''}`}>
+        Veuillez renseigner tous les champs requis pour pouvoir passer à l'étape suivante.
+      </div>
+      
       <div className={styles.formGrid}>
         {/* Civilité */}
         <div className={styles.formGroup}>

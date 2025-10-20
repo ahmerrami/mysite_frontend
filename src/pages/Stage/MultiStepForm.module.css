@@ -221,6 +221,37 @@
   font-size: 0.8rem;
 }
 
+/* Helper message for form completion */
+.helperMessage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #fff3cd 0%, #fdf4d0 100%);
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  margin: 20px 0;
+  color: #856404;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.helperMessage.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  margin: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.helperMessage::before {
+  content: '💡';
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
 /* Boutons */
 .buttonGroup {
   display: flex;
@@ -536,6 +567,17 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideIn {

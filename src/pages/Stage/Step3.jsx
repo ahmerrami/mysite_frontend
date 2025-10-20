@@ -49,6 +49,10 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
 
   return (
     <div className={styles.stepContainer}>
+      {/* Message d'aide pour la completion du formulaire */}
+      <div className={`${styles.helperMessage} ${validateStep() ? styles.hidden : ''}`}>
+        Veuillez renseigner tous les champs requis pour pouvoir soumettre votre candidature.
+      </div>
       <div className={styles.formGrid}>
         {/* Période de stage */}
         <div className={styles.formGroup}>
