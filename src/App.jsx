@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import About from './pages/About/About.jsx';
 import Reference from './pages/Reference/Reference.jsx';
@@ -15,15 +15,35 @@ import MultiStepForm from './pages/Stage/MultiStepForm.jsx';
 import Conditions from './pages/Stage/Conditions.jsx';
 
 // Import de la configuration des fonctionnalités
-import { FEATURES, isFeatureEnabled } from './config/features.js';
+import { getFeatures, FEATURES as STATIC_FEATURES, isFeatureEnabled } from './config/features.js';
 
 const App = () => {
   const imageUrl = './logo.png';
   
-  // Debug temporaire
-  console.log('🔍 DEBUG - isFeatureEnabled STAGES:', isFeatureEnabled('STAGES'));
-  console.log('🔍 DEBUG - FEATURES.STAGES:', FEATURES.STAGES);
-  console.log('🔍 DEBUG - showInMenu:', FEATURES.STAGES.showInMenu);
+  // État pour les fonctionnalités dynamiques
+  const [features, setFeatures] = useState({
+    STAGES: { enabled: false, showInMenu: false, showInRoutes: false }
+  });
+  const [featuresLoaded, setFeaturesLoaded] = useState(false);
+
+  // Charger les fonctionnalités au démarrage
+  useEffect(() => {
+    const loadFeatures = async () => {
+      try {
+        console.log('🔍 Chargement des fonctionnalités...');
+        const dynamicFeatures = await getFeatures();
+        console.log('✅ Fonctionnalités chargées:', dynamicFeatures);
+        setFeatures(dynamicFeatures);
+      } catch (error) {
+        console.error('❌ Erreur lors du chargement des fonctionnalités:', error);
+        // En cas d'erreur, garder les valeurs par défaut (stages désactivés)
+      } finally {
+        setFeaturesLoaded(true);
+      }
+    };
+
+    loadFeatures();
+  }, []);
   
   return (
       <Router>
@@ -51,19 +71,19 @@ const App = () => {
                 <span className="nav-icon">🏆</span>
                 <span className="nav-text">Références</span>
               </Link>
-              {isFeatureEnabled('OMRA') && FEATURES.OMRA.showInMenu && (
+              {STATIC_FEATURES.OMRA.enabled && STATIC_FEATURES.OMRA.showInMenu && (
                 <Link to="/omra" className="nav-item">
                   <span className="nav-icon">🕌</span>
                   <span className="nav-text">Omra</span>
                 </Link>
               )}
-              {isFeatureEnabled('APPELS_OFFRES') && FEATURES.APPELS_OFFRES.showInMenu && (
+              {STATIC_FEATURES.APPELS_OFFRES.enabled && STATIC_FEATURES.APPELS_OFFRES.showInMenu && (
                 <Link to="/ao" className="nav-item">
                   <span className="nav-icon">📋</span>
                   <span className="nav-text">Appels d'Offres</span>
                 </Link>
               )}
-              {isFeatureEnabled('STAGES') && FEATURES.STAGES.showInMenu && (
+              {featuresLoaded && features.STAGES?.showInMenu && (
                 <Link to="/stage" className="nav-item">
                   <span className="nav-icon">🎓</span>
                   <span className="nav-text">Stages</span>
@@ -87,13 +107,13 @@ const App = () => {
           <Route path="/" element={<Slider />} />
           <Route path="/about" element={<About />} />
           <Route path="/reference" element={<Reference />} />
-          {isFeatureEnabled('OMRA') && FEATURES.OMRA.showInRoutes && (
+          {STATIC_FEATURES.OMRA.enabled && STATIC_FEATURES.OMRA.showInRoutes && (
             <Route path="/omra" element={<Omra />} />
           )}
-          {isFeatureEnabled('APPELS_OFFRES') && FEATURES.APPELS_OFFRES.showInRoutes && (
+          {STATIC_FEATURES.APPELS_OFFRES.enabled && STATIC_FEATURES.APPELS_OFFRES.showInRoutes && (
             <Route path="/ao" element={<AO />} />
           )}
-          {isFeatureEnabled('STAGES') && FEATURES.STAGES.showInRoutes && (
+          {featuresLoaded && features.STAGES?.showInRoutes && (
             <Route path="/stage" element={<MultiStepForm />} />
           )}
           <Route path="/conditions" element={<Conditions />} />
