@@ -25,6 +25,14 @@ const App = () => {
     STAGES: { enabled: false, showInMenu: false, showInRoutes: false }
   });
   const [featuresLoaded, setFeaturesLoaded] = useState(false);
+  
+  // État pour le menu mobile
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Fonction pour toggle le menu mobile
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   // Charger les fonctionnalités au démarrage
   useEffect(() => {
@@ -58,45 +66,45 @@ const App = () => {
             </div>
 
             {/* Menu de navigation */}
-            <div className="navbar-menu">
-              <Link to="/" className="nav-item">
+            <div className={`navbar-menu ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+              <Link to="/" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                 <span className="nav-icon">🏠</span>
                 <span className="nav-text">Accueil</span>
               </Link>
-              <Link to="/about" className="nav-item">
+              <Link to="/about" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                 <span className="nav-icon">ℹ️</span>
                 <span className="nav-text">À Propos</span>
               </Link>
-              <Link to="/reference" className="nav-item">
+              <Link to="/reference" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                 <span className="nav-icon">🏆</span>
                 <span className="nav-text">Références</span>
               </Link>
               {STATIC_FEATURES.OMRA.enabled && STATIC_FEATURES.OMRA.showInMenu && (
-                <Link to="/omra" className="nav-item">
+                <Link to="/omra" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                   <span className="nav-icon">🕌</span>
                   <span className="nav-text">Omra</span>
                 </Link>
               )}
               {STATIC_FEATURES.APPELS_OFFRES.enabled && STATIC_FEATURES.APPELS_OFFRES.showInMenu && (
-                <Link to="/ao" className="nav-item">
+                <Link to="/ao" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                   <span className="nav-icon">📋</span>
                   <span className="nav-text">Appels d'Offres</span>
                 </Link>
               )}
               {featuresLoaded && features.STAGES?.showInMenu && (
-                <Link to="/stage" className="nav-item">
+                <Link to="/stage" className="nav-item" onClick={() => setMobileMenuOpen(false)}>
                   <span className="nav-icon">🎓</span>
                   <span className="nav-text">Stages</span>
                 </Link>
               )}
-              <Link to="/contact" className="nav-item contact-item">
+              <Link to="/contact" className="nav-item contact-item" onClick={() => setMobileMenuOpen(false)}>
                 <span className="nav-icon">📞</span>
                 <span className="nav-text">Contact</span>
               </Link>
             </div>
 
             {/* Bouton mobile menu (pour responsive) */}
-            <div className="mobile-menu-toggle">
+            <div className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`} onClick={toggleMobileMenu}>
               <span></span>
               <span></span>
               <span></span>
