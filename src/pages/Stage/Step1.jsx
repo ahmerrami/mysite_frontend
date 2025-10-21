@@ -2,10 +2,33 @@ import React from 'react';
 import styles from './MultiStepForm.module.css';
 
 function Step1({ formData, handleChange, handleNext, villes, errors }) {
-  const { civilite, nom, prenom, cin, dateN, tel, email, adress, ville } = formData;
+  const { civilite, nom, prenom, cin, dateN, tel, telConfirm, email, emailConfirm, adress, ville } = formData;
 
   const validateStep = () => {
-    return civilite && nom && prenom && cin && dateN && tel && email && adress && ville;
+    return civilite && nom && prenom && cin && dateN && tel && telConfirm && 
+           tel === telConfirm && email && emailConfirm && email === emailConfirm && adress && ville;
+  };
+
+  // Fonction pour empêcher le collage
+  const handlePaste = (e) => {
+    e.preventDefault();
+    return false;
+  };
+
+  // Fonction pour gérer la saisie des champs téléphone (chiffres uniquement)
+  const handlePhoneChange = (e) => {
+    const { name, value } = e.target;
+    // Ne garder que les chiffres
+    const digitsOnly = value.replace(/\D/g, '');
+    // Limiter à 10 caractères
+    const limitedValue = digitsOnly.slice(0, 10);
+    
+    handleChange({
+      target: {
+        name,
+        value: limitedValue
+      }
+    });
   };
 
   return (
@@ -105,7 +128,7 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
           </div>
         </div>
 
-        {/* Téléphone et Email */}
+        {/* Téléphone et Confirmation */}
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label className={`${styles.formLabel} ${styles.required}`}>
@@ -115,14 +138,42 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
               type="tel"
               name="tel"
               value={tel}
-              onChange={handleChange}
+              onChange={handlePhoneChange}
+              onPaste={handlePaste}
               className={styles.formInput}
-              placeholder="06 XX XX XX XX"
+              placeholder="0612345678 (10 chiffres)"
+              pattern="0[0-9]{9}"
+              maxLength="10"
               required
             />
             {errors.tel && <div className={styles.formError}>{errors.tel}</div>}
           </div>
           
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Confirmer le téléphone
+            </label>
+            <input
+              type="tel"
+              name="telConfirm"
+              value={telConfirm || ''}
+              onChange={handlePhoneChange}
+              onPaste={handlePaste}
+              className={styles.formInput}
+              placeholder="Confirmer (10 chiffres)"
+              pattern="0[0-9]{9}"
+              maxLength="10"
+              required
+            />
+            {errors.telConfirm && <div className={styles.formError}>{errors.telConfirm}</div>}
+            {tel && telConfirm && tel !== telConfirm && (
+              <div className={styles.formError}>Les numéros de téléphone ne correspondent pas</div>
+            )}
+          </div>
+        </div>
+
+        {/* Email et Confirmation */}
+        <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label className={`${styles.formLabel} ${styles.required}`}>
               Adresse email
@@ -132,11 +183,32 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
               name="email"
               value={email}
               onChange={handleChange}
+              onPaste={handlePaste}
               className={styles.formInput}
               placeholder="votre.email@exemple.com"
               required
             />
             {errors.email && <div className={styles.formError}>{errors.email}</div>}
+          </div>
+          
+          <div className={styles.formGroup}>
+            <label className={`${styles.formLabel} ${styles.required}`}>
+              Confirmer l'email
+            </label>
+            <input
+              type="email"
+              name="emailConfirm"
+              value={emailConfirm || ''}
+              onChange={handleChange}
+              onPaste={handlePaste}
+              className={styles.formInput}
+              placeholder="Confirmer votre email"
+              required
+            />
+            {errors.emailConfirm && <div className={styles.formError}>{errors.emailConfirm}</div>}
+            {email && emailConfirm && email !== emailConfirm && (
+              <div className={styles.formError}>Les adresses email ne correspondent pas</div>
+            )}
           </div>
         </div>
 
