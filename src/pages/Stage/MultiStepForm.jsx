@@ -12,7 +12,9 @@ const INITIAL_FORM_DATA = {
   cin: '',
   dateN: '',
   tel: '',
+  telConfirm: '',
   email: '',
+  emailConfirm: '',
   adress: '',
   ville: 0,
   niveau: '',
@@ -33,6 +35,7 @@ function MultiStepForm() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     fetchData('villes', setVilles);
@@ -72,8 +75,25 @@ function MultiStepForm() {
       if (!formData.prenom) newErrors.prenom = 'Le prénom est requis';
       if (!formData.cin) newErrors.cin = 'Le CIN est requis';
       if (!formData.dateN) newErrors.dateN = 'La date de naissance est requise';
-      if (!formData.tel) newErrors.tel = 'Le téléphone est requis';
+      if (!formData.tel) {
+        newErrors.tel = 'Le téléphone est requis';
+      } else {
+        // Validation format téléphone : 10 chiffres commençant par 0
+        const phoneRegex = /^0[0-9]{9}$/;
+        if (!phoneRegex.test(formData.tel)) {
+          newErrors.tel = 'Le téléphone doit contenir 10 chiffres et commencer par 0 (ex: 0612345678)';
+        }
+      }
+      if (!formData.telConfirm) {
+        newErrors.telConfirm = 'La confirmation du téléphone est requise';
+      } else if (formData.tel && formData.telConfirm && formData.tel !== formData.telConfirm) {
+        newErrors.telConfirm = 'Les numéros de téléphone ne correspondent pas';
+      }
       if (!formData.email) newErrors.email = 'L\'email est requis';
+      if (!formData.emailConfirm) newErrors.emailConfirm = 'La confirmation d\'email est requise';
+      if (formData.email && formData.emailConfirm && formData.email !== formData.emailConfirm) {
+        newErrors.emailConfirm = 'Les adresses email ne correspondent pas';
+      }
       if (!formData.adress) newErrors.adress = 'L\'adresse est requise';
       if (!formData.ville) newErrors.ville = 'Veuillez sélectionner une ville';
     }
@@ -156,9 +176,8 @@ function MultiStepForm() {
       const responseData = await response.json();
       console.log('✅ Succès API:', responseData);
       
-      setSuccessMessage('Votre candidature a été envoyée avec succès !');
-      resetForm();
-      setStep(1);
+      // Afficher le modal de succès
+      setShowSuccessModal(true);
     } catch (error) {
       console.error('💥 Erreur lors de l\'envoi:', error);
       setErrors(prev => ({ ...prev, submit: `Erreur lors de l'envoi: ${error.message}` }));
@@ -171,6 +190,12 @@ function MultiStepForm() {
     setFormData(INITIAL_FORM_DATA);
     setErrors({});
     setSuccessMessage('');
+  };
+
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
+    resetForm();
+    setStep(1);
   };
 
   const getStepTitle = () => {
@@ -274,6 +299,26 @@ function MultiStepForm() {
         </div>
       </div>
 
+      {/* Modal de succès */}
+      {showSuccessModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.successModal}>
+            <div className={styles.modalIcon}>🎉</div>
+            <h2 className={styles.modalTitle}>Félicitations !</h2>
+            <p className={styles.modalMessage}>
+              Votre candidature a été envoyée avec succès !<br />
+              Nous vous contacterons bientôt.
+            </p>
+            <button 
+              className={`${styles.btn} ${styles.btnPrimary} ${styles.modalButton}`}
+              onClick={handleSuccessModalClose}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Messages d'état */}
       {successMessage && (
         <div className={styles.successMessage}>
@@ -282,6 +327,13 @@ function MultiStepForm() {
             <h3>Félicitations !</h3>
             <p>{successMessage}</p>
           </div>
+          <button 
+            className={styles.closeButton}
+            onClick={() => setSuccessMessage('')}
+            aria-label="Fermer le message"
+          >
+            ×
+          </button>
         </div>
       )}
 
@@ -292,6 +344,13 @@ function MultiStepForm() {
             <h3>Erreur</h3>
             <p>{errors.submit}</p>
           </div>
+          <button 
+            className={styles.closeButton}
+            onClick={() => setErrors(prev => ({ ...prev, submit: '' }))}
+            aria-label="Fermer le message"
+          >
+            ×
+          </button>
         </div>
       )}
 

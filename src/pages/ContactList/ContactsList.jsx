@@ -26,7 +26,7 @@ const contactsData = [
     name: 'Service RH', 
     imageUrl:'./unknown.png', 
     position: 'Responsable Stages & Ressources Humaines', 
-    email: 'rh@supratourstravel.com', 
+    email: 'stages.st@hotmail.com', 
     phone:'0702-008774',
     type: 'person'
   },
