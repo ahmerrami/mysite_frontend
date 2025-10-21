@@ -200,6 +200,11 @@ function MultiStepForm() {
           Rejoignez l'équipe Supratours Travel pour une expérience professionnelle enrichissante
         </p>
         
+        {/* Titre promotionnel animé */}
+        <div className={styles.promotionalTitle}>
+          Stage rémunéré assuré pendant la CAN 2025
+        </div>
+        
         {/* Indicateur de progression */}
         <div className={styles.progressContainer}>
           <div className={styles.progressBar}>
