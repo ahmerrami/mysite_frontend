@@ -4,9 +4,37 @@ import styles from './MultiStepForm.module.css';
 function Step1({ formData, handleChange, handleNext, villes, errors }) {
   const { civilite, nom, prenom, cin, dateN, tel, telConfirm, email, emailConfirm, adress, ville } = formData;
 
+  // Calculer les dates limites pour le champ date de naissance
+  const today = new Date();
+  const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  const minDate = new Date(today.getFullYear() - 35, today.getMonth(), today.getDate());
+  
+  // Formater les dates pour l'attribut HTML (YYYY-MM-DD)
+  const maxDateString = maxDate.toISOString().split('T')[0];
+  const minDateString = minDate.toISOString().split('T')[0];
+
+  // Fonction pour vérifier si l'utilisateur a entre 18 et 35 ans
+  const isAgeValid = (birthDate) => {
+    if (!birthDate) return false;
+    const birth = new Date(birthDate);
+    const age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    const dayDiff = today.getDate() - birth.getDate();
+    
+    // Calculer l'âge exact
+    let actualAge = age;
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      actualAge = age - 1;
+    }
+    
+    // Vérifier que l'âge est entre 18 et 35 ans
+    return actualAge >= 18 && actualAge <= 35;
+  };
+
   const validateStep = () => {
-    return civilite && nom && prenom && cin && dateN && tel && telConfirm && 
-           tel === telConfirm && email && emailConfirm && email === emailConfirm && adress && ville;
+    return civilite && nom && prenom && cin && dateN && isAgeValid(dateN) && 
+           tel && telConfirm && tel === telConfirm && 
+           email && emailConfirm && email === emailConfirm && adress && ville;
   };
 
   // Fonction pour empêcher le collage
@@ -114,7 +142,7 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
           
           <div className={styles.formGroup}>
             <label className={`${styles.formLabel} ${styles.required}`}>
-              Date de naissance
+              Date de naissance (entre 18 et 35 ans)
             </label>
             <input
               type="date"
@@ -122,9 +150,14 @@ function Step1({ formData, handleChange, handleNext, villes, errors }) {
               value={dateN}
               onChange={handleChange}
               className={styles.formInput}
+              min={minDateString}
+              max={maxDateString}
               required
             />
             {errors.dateN && <div className={styles.formError}>{errors.dateN}</div>}
+            {dateN && !isAgeValid(dateN) && (
+              <div className={styles.formError}>Vous devez avoir entre 18 et 35 ans pour postuler</div>
+            )}
           </div>
         </div>
 

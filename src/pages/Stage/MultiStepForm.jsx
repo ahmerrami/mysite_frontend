@@ -74,7 +74,27 @@ function MultiStepForm() {
       if (!formData.nom) newErrors.nom = 'Le nom est requis';
       if (!formData.prenom) newErrors.prenom = 'Le prénom est requis';
       if (!formData.cin) newErrors.cin = 'Le CIN est requis';
-      if (!formData.dateN) newErrors.dateN = 'La date de naissance est requise';
+      if (!formData.dateN) {
+        newErrors.dateN = 'La date de naissance est requise';
+      } else {
+        // Validation de l'âge (entre 18 et 35 ans)
+        const today = new Date();
+        const birthDate = new Date(formData.dateN);
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+        
+        let actualAge = age;
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+          actualAge = age - 1;
+        }
+        
+        if (actualAge < 18) {
+          newErrors.dateN = 'Vous devez avoir au moins 18 ans pour postuler';
+        } else if (actualAge > 35) {
+          newErrors.dateN = 'Vous devez avoir 35 ans maximum pour postuler';
+        }
+      }
       if (!formData.tel) {
         newErrors.tel = 'Le téléphone est requis';
       } else {
