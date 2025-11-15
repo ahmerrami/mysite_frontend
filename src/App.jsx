@@ -38,12 +38,14 @@ const App = () => {
   useEffect(() => {
     const loadFeatures = async () => {
       try {
-        console.log('🔍 Chargement des fonctionnalités...');
+        const isDevelopment = import.meta.env.MODE === 'development';
+        if (isDevelopment) console.log('🔍 Chargement des fonctionnalités...');
         const dynamicFeatures = await getFeatures();
-        console.log('✅ Fonctionnalités chargées:', dynamicFeatures);
+        if (isDevelopment) console.log('✅ Fonctionnalités chargées:', dynamicFeatures);
         setFeatures(dynamicFeatures);
       } catch (error) {
-        console.error('❌ Erreur lors du chargement des fonctionnalités:', error);
+        const isDevelopment = import.meta.env.MODE === 'development';
+        if (isDevelopment) console.error('❌ Erreur lors du chargement des fonctionnalités:', error);
         // En cas d'erreur, garder les valeurs par défaut (stages désactivés)
       } finally {
         setFeaturesLoaded(true);

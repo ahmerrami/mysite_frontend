@@ -1,7 +1,8 @@
 // 🎛️ Configuration des fonctionnalités du site
 // Le menu Stages est activé automatiquement si des villes et périodes sont disponibles via l'API
 
-const API_URL = 'https://idara.supratourstravel.com/api/stages';
+// Utiliser la variable d'environnement ou l'URL par défaut
+const API_URL = import.meta.env.VITE_API_URL || 'https://idara.supratourstravel.com/api/stages';
 
 // Configuration statique des fonctionnalités (autres que Stages)
 export const STATIC_FEATURES = {

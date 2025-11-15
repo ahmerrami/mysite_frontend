@@ -28,6 +28,17 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
     const file = files[0];
 
     if (file) {
+      // Vérifier le type MIME
+      if (file.type !== 'application/pdf') {
+        if (name === 'cv') {
+          setCvError('Le fichier doit être au format PDF.');
+        } else if (name === 'lettre') {
+          setLettreError('Le fichier doit être au format PDF.');
+        }
+        return;
+      }
+
+      // Vérifier la taille du fichier
       const fileSizeMB = file.size / 1024 / 1024;
       if (fileSizeMB > 1) {
         if (name === 'cv') {
@@ -35,15 +46,44 @@ function Step3({ formData, handleChange, handlePrevious, handleSubmit, loading, 
         } else if (name === 'lettre') {
           setLettreError('La taille de la lettre de motivation doit être inférieure à 1 Mo.');
         }
-      } else {
+        return;
+      }
+
+      // Vérifier la signature du fichier (magic bytes PDF)
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const arr = new Uint8Array(event.target.result).subarray(0, 4);
+        const header = Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        // PDF commence par %PDF (25 50 44 46)
+        if (!header.startsWith('25504446')) {
+          if (name === 'cv') {
+            setCvError('Le fichier n\'est pas un PDF valide.');
+          } else if (name === 'lettre') {
+            setLettreError('Le fichier n\'est pas un PDF valide.');
+          }
+          return;
+        }
+
+        // Fichier valide, réinitialiser les erreurs
         if (name === 'cv') {
           setCvError('');
         } else if (name === 'lettre') {
           setLettreError('');
         }
-      }
 
-      handleChange(e);
+        handleChange(e);
+      };
+      
+      reader.onerror = () => {
+        if (name === 'cv') {
+          setCvError('Erreur lors de la lecture du fichier.');
+        } else if (name === 'lettre') {
+          setLettreError('Erreur lors de la lecture du fichier.');
+        }
+      };
+      
+      reader.readAsArrayBuffer(file.slice(0, 4));
     }
   };
 

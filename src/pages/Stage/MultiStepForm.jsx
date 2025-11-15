@@ -4,7 +4,10 @@ import Step2 from './Step2';
 import Step3 from './Step3';
 import styles from './MultiStepForm.module.css';
 
-const API_URL = 'https://idara.supratourstravel.com/api/stages';
+import { getFeatures, FEATURES as STATIC_FEATURES, isFeatureEnabled } from '../../config/features.js';
+
+// Utiliser la variable d'environnement ou l'URL par défaut
+const API_URL = import.meta.env.VITE_API_URL || 'https://idara.supratourstravel.com/api/stages';
 const INITIAL_FORM_DATA = {
   civilite: '',
   nom: '',
@@ -147,40 +150,46 @@ function MultiStepForm() {
   };
 
   const handleSubmit = async () => {
-    console.log('🚀 Début de la soumission...');
-    console.log('📋 Données du formulaire:', formData);
+    const isDevelopment = import.meta.env.MODE === 'development';
+    
+    if (isDevelopment) {
+      console.log('🚀 Début de la soumission...');
+      console.log('📋 Données du formulaire:', formData);
+    }
     
     if (!validateStep(3)) {
-      console.log('❌ Échec de la validation de l\'étape 3');
-      console.log('🔍 Erreurs de validation:', errors);
+      if (isDevelopment) {
+        console.log('❌ Échec de la validation de l\'étape 3');
+        console.log('🔍 Erreurs de validation:', errors);
+      }
       return;
     }
 
-    console.log('✅ Validation réussie, envoi en cours...');
+    if (isDevelopment) console.log('✅ Validation réussie, envoi en cours...');
     setLoading(true);
     
     try {
       const submitFormData = new FormData();
       Object.keys(formData).forEach(key => {
         if (formData[key] !== null && formData[key] !== '') {
-          console.log(`📎 Ajout ${key}:`, formData[key]);
+          if (isDevelopment) console.log(`📎 Ajout ${key}:`, formData[key]);
           submitFormData.append(key, formData[key]);
         }
       });
 
       // Envoi vers l'API
-      console.log('📡 Envoi vers l\'API...');
+      if (isDevelopment) console.log('📡 Envoi vers l\'API...');
       
       const response = await fetch(`${API_URL}/form-stage/create/`, {
         method: 'POST',
         body: submitFormData,
       });
 
-      console.log(`📊 Réponse API: ${response.status} ${response.statusText}`);
+      if (isDevelopment) console.log(`📊 Réponse API: ${response.status} ${response.statusText}`);
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('❌ Erreur API:', errorData);
+        if (isDevelopment) console.error('❌ Erreur API:', errorData);
         
         // Traiter les erreurs spécifiques
         if (errorData.cv && errorData.cv.includes('No file was submitted')) {
@@ -194,12 +203,12 @@ function MultiStepForm() {
       }
 
       const responseData = await response.json();
-      console.log('✅ Succès API:', responseData);
+      if (isDevelopment) console.log('✅ Succès API:', responseData);
       
       // Afficher le modal de succès
       setShowSuccessModal(true);
     } catch (error) {
-      console.error('💥 Erreur lors de l\'envoi:', error);
+      if (isDevelopment) console.error('💥 Erreur lors de l\'envoi:', error);
       setErrors(prev => ({ ...prev, submit: `Erreur lors de l'envoi: ${error.message}` }));
     } finally {
       setLoading(false);
