@@ -256,7 +256,7 @@ function MultiStepForm() {
         
         {/* Titre promotionnel animé */}
         <div className={styles.promotionalTitle}>
-          Stage rémunéré assuré pendant la CAN 2025
+          Stage rémunéré assuré pendant l'été 2026 - Postulez dès maintenant !
         </div>
         
         {/* Indicateur de progression */}
